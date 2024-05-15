@@ -1,0 +1,3 @@
+/home/aj/CLionProjects/ModernGame/cmake-build-debug/CMakeFiles/ModernGame.dir
+/home/aj/CLionProjects/ModernGame/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/aj/CLionProjects/ModernGame/cmake-build-debug/CMakeFiles/rebuild_cache.dir
