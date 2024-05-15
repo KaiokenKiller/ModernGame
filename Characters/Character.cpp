@@ -4,12 +4,8 @@
 
 #include "Character.h"
 
-void Character::getDamaged(int damage, bool trueDamage){
-    if (!trueDamage)
-        damage -= m_defense;
-    if (damage <=0)
-        return;
-    m_health-=damage;
+void Character::getDamaged(Attack attack, bool trueDamage){
+
     return;
 }
 
