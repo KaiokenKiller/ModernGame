@@ -4,18 +4,11 @@
 
 #include "Character.h"
 
-void Character::getDamaged(Attack attack, bool trueDamage){
+void Character::getDamaged(Attack attack){
 
     return;
 }
 
-int Character::getAttack() const {
-    return m_attack;
-}
-
-int Character::getDefense() const {
-    return m_defense;
-}
 
 int Character::getHealth() const {
     return m_health;

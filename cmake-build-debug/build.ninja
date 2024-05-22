@@ -85,11 +85,23 @@ build CMakeFiles/ModernGame.dir/Items/Item.cpp.o: CXX_COMPILER__ModernGame_unsca
   OBJECT_DIR = CMakeFiles/ModernGame.dir
   OBJECT_FILE_DIR = CMakeFiles/ModernGame.dir/Items
 
-build CMakeFiles/ModernGame.dir/Tweaks/Attack.cpp.o: CXX_COMPILER__ModernGame_unscanned_Debug /home/aj/CLionProjects/ModernGame/Tweaks/Attack.cpp || cmake_object_order_depends_target_ModernGame
-  DEP_FILE = CMakeFiles/ModernGame.dir/Tweaks/Attack.cpp.o.d
+build CMakeFiles/ModernGame.dir/Misc/Attack.cpp.o: CXX_COMPILER__ModernGame_unscanned_Debug /home/aj/CLionProjects/ModernGame/Misc/Attack.cpp || cmake_object_order_depends_target_ModernGame
+  DEP_FILE = CMakeFiles/ModernGame.dir/Misc/Attack.cpp.o.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/ModernGame.dir
-  OBJECT_FILE_DIR = CMakeFiles/ModernGame.dir/Tweaks
+  OBJECT_FILE_DIR = CMakeFiles/ModernGame.dir/Misc
+
+build CMakeFiles/ModernGame.dir/Misc/Armor.cpp.o: CXX_COMPILER__ModernGame_unscanned_Debug /home/aj/CLionProjects/ModernGame/Misc/Armor.cpp || cmake_object_order_depends_target_ModernGame
+  DEP_FILE = CMakeFiles/ModernGame.dir/Misc/Armor.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/ModernGame.dir
+  OBJECT_FILE_DIR = CMakeFiles/ModernGame.dir/Misc
+
+build CMakeFiles/ModernGame.dir/Items/Armor.cpp.o: CXX_COMPILER__ModernGame_unscanned_Debug /home/aj/CLionProjects/ModernGame/Items/Armor.cpp || cmake_object_order_depends_target_ModernGame
+  DEP_FILE = CMakeFiles/ModernGame.dir/Items/Armor.cpp.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/ModernGame.dir
+  OBJECT_FILE_DIR = CMakeFiles/ModernGame.dir/Items
 
 
 # =============================================================================
@@ -99,7 +111,7 @@ build CMakeFiles/ModernGame.dir/Tweaks/Attack.cpp.o: CXX_COMPILER__ModernGame_un
 #############################################
 # Link the executable ModernGame
 
-build ModernGame: CXX_EXECUTABLE_LINKER__ModernGame_Debug CMakeFiles/ModernGame.dir/main.cpp.o CMakeFiles/ModernGame.dir/Adventure.cpp.o CMakeFiles/ModernGame.dir/Characters/Character.cpp.o CMakeFiles/ModernGame.dir/Characters/Player.cpp.o CMakeFiles/ModernGame.dir/Characters/Enemy.cpp.o CMakeFiles/ModernGame.dir/Items/Item.cpp.o CMakeFiles/ModernGame.dir/Tweaks/Attack.cpp.o
+build ModernGame: CXX_EXECUTABLE_LINKER__ModernGame_Debug CMakeFiles/ModernGame.dir/main.cpp.o CMakeFiles/ModernGame.dir/Adventure.cpp.o CMakeFiles/ModernGame.dir/Characters/Character.cpp.o CMakeFiles/ModernGame.dir/Characters/Player.cpp.o CMakeFiles/ModernGame.dir/Characters/Enemy.cpp.o CMakeFiles/ModernGame.dir/Items/Item.cpp.o CMakeFiles/ModernGame.dir/Misc/Attack.cpp.o CMakeFiles/ModernGame.dir/Misc/Armor.cpp.o CMakeFiles/ModernGame.dir/Items/Armor.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/ModernGame.dir
   POST_BUILD = :

@@ -14,5 +14,9 @@ add_executable(ModernGame main.cpp
         Characters/Enemy.h
         Items/Item.cpp
         Items/Item.h
-        Tweaks/Attack.cpp
-        Tweaks/Attack.h)
+        Misc/Attack.cpp
+        Misc/Attack.h
+        Misc/equippedArmor.cpp
+        Misc/equippedArmor.h
+        Items/Armor.cpp
+        Items/Armor.h)
