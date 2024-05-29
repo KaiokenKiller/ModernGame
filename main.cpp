@@ -2,6 +2,10 @@
 
 int main() {
     Adventure adventure;
-    adventure.start();
+
+    adventure.test();
+
+    //adventure.start();
+
     return 0;
 }

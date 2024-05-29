@@ -9,8 +9,6 @@
 class Armor : Item{
 protected:
 
-
-    std::string m_tag;
     int m_armorValue;
 
 
@@ -22,10 +20,10 @@ public:
 
     ~Armor();
 
-    std::string getTag();
+
     int getArmor();
 
-    void setTag(std::string tag);
+
     void setArmor(int armorValue);
 
     void info() override;

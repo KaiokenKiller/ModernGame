@@ -4,9 +4,9 @@
 
 #ifndef MODERNGAME_ENEMY_H
 #define MODERNGAME_ENEMY_H
+#include "Character.h"
 
-
-class Enemy {
+class Enemy :Character{
 
 };
 

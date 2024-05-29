@@ -6,6 +6,7 @@
 #define MODERNGAME_CHARACTER_H
 #include "iostream"
 #include "vector"
+#include "memory"
 #include "../Misc/Attack.h"
 
 
@@ -36,6 +37,12 @@ public:
     int getHealth() const;
 
     std::string getName() const;
+
+    void setName(std::string &name);
+
+    void setHealth(int health);
+
+
 };
 
 

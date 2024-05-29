@@ -4,16 +4,6 @@
 
 #include "Item.h"
 
-Item::Item() = default;
-
-Item::Item(unsigned int id, std::string itemName, unsigned int quantity) {
-    m_id = id;
-    m_itemName = itemName;
-    m_quantity = quantity;
-}
-
-Item::~Item() = default;
-
 unsigned int Item::getId() {
     return m_id;
 }
@@ -24,6 +14,10 @@ std::string Item::getItemName() {
 
 unsigned int Item::getQuantity() {
     return m_quantity;
+}
+
+std::string Item::getTag() {
+    return m_tag;
 }
 
 void Item::setId(unsigned int id) {
@@ -38,6 +32,6 @@ void Item::setQuantity(unsigned int quantity) {
     m_quantity = quantity;
 }
 
-void Item::info() {
-    std::cout<< "ID: " << m_id << "\n Name: " << m_itemName << "\n Anzahl: " << m_quantity << std::endl;
+void Item::setTag(std::string &tag) {
+    m_tag = tag;
 }

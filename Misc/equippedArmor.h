@@ -24,10 +24,15 @@ public:
     void equipLegs(std::shared_ptr<Armor> legs);
     void equipGloves(std::shared_ptr<Armor> gloves);
 
-    Armor getHelmet();
-    Armor getTorso();
-    Armor getLegs();
-    Armor getGloves();
+    void unequipHelmet();
+    void unequipTorso();
+    void unequipLegs();
+    void unequipGloves();
+
+    std::shared_ptr<Armor> getHelmet();
+    std::shared_ptr<Armor> getTorso();
+    std::shared_ptr<Armor> getLegs();
+    std::shared_ptr<Armor> getGloves();
 };
 
 

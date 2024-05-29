@@ -17,3 +17,11 @@ int Character::getHealth() const {
 std::string Character::getName() const {
     return m_name;
 }
+
+void Character::setHealth(int health) {
+    m_health = health;
+}
+
+void Character::setName(std::string &name) {
+    m_name = name;
+}

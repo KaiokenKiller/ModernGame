@@ -3,6 +3,10 @@ project(ModernGame)
 
 set(CMAKE_CXX_STANDARD 17)
 
+find_package(
+        fmt REQUIRED
+)
+
 add_executable(ModernGame main.cpp
         Adventure.cpp
         Adventure.h
@@ -20,3 +24,7 @@ add_executable(ModernGame main.cpp
         Misc/equippedArmor.h
         Items/Armor.cpp
         Items/Armor.h)
+
+target_link_libraries(
+        ModernGame PRIVATE fmt::fmt
+)
