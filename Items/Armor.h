@@ -6,23 +6,29 @@
 #define MODERNGAME_ARMOR_H
 #include "Item.h"
 
-enum class Tag;
-
 class Armor : Item{
 protected:
 
 
-    Tag m_tag;
-    int armor;
+    std::string m_tag;
+    int m_armorValue;
 
 
 public:
 
     Armor();
+
+    Armor(unsigned id, std::string itemName, unsigned quantity, std::string tag, int armorValue);
+
     ~Armor();
 
-    Tag getTag();
+    std::string getTag();
     int getArmor();
+
+    void setTag(std::string tag);
+    void setArmor(int armorValue);
+
+    void info() override;
 };
 
 
