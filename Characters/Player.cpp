@@ -6,62 +6,51 @@
 
 Player::Player() {
     m_name = "Nameless";
+	m_modifiedDefense = getDefense();
+	m_armorSet = std::make_unique<equippedArmor>();
 }
 
-Player::Player(std::string &name) {
+Player::Player(std::string name){
     m_name = name;
+	m_modifiedDefense = getDefense();
+	m_armorSet = std::make_unique<equippedArmor>();
 }
 
 Player::~Player() = default;
 
-void Player::equip(std::shared_ptr<Item*> armor) {
-    if ((*armor)->getTag() == "helmet") {
-        m_armorSet->equipHelmet(armor);
-        return;
-    }
-    if ((*armor)->getTag() == "torso") {
-        m_armorSet->equipTorso(armor);
-        return;
-    }
-    if (armor->getTag() == "legs") {
-        m_armorSet->equipLegs(armor);
-        return;
-    }
-    if (armor->getTag() == "gloves") {
-        m_armorSet->equipGloves(armor);
-        return;
-    }
-    fmt::print("{} ist kein Rüstungsteil.\n",armor->getItemName());
+
+std::shared_ptr<Item> Player::getItem(unsigned id){
+	if (id > m_inventory.size()){
+		fmt::print("Es gibt kein Item mit der ID {}\n",id);
+		return nullptr;
+	}
+
+	return m_inventory[id];
 }
 
-void Player::unequip(std::shared_ptr<Item*> armor) {
-    if (armor->getTag() == "helmet") {
-        if (armor == m_armorSet->getHelmet())
-            m_armorSet->unequipHelmet();
-        else
-            fmt::print("{} ist nicht ausgerüstet.")
-        return;
-    }
-    if (armor->getTag() == "torso") {
-        if (armor == m_armorSet->getTorso())
-            m_armorSet->unequipTorso();
-        else
-            fmt::print("{} ist nicht ausgerüstet.")
-        return;
-    }
-    if (armor->getTag() == "legs") {
-        if (armor == m_armorSet->getLegs())
-            m_armorSet->unequipLegs();
-        else
-            fmt::print("{} ist nicht ausgerüstet.")
-        return;
-    }
-    if (armor->getTag() == "gloves") {
-        if (armor == m_armorSet->getGloves())
-            m_armorSet->unequipGloves();
-        else
-            fmt::print("{} ist nicht ausgerüstet.")
-        return;
-    }
-    fmt::print("{} ist kein Rüstungsteil.\n",armor->getItemName());
+void Player::addItem(const std::shared_ptr<Item>& item) {
+	m_inventory.emplace_back(item);
+}
+
+
+void Player::equipArmor(const std::shared_ptr<Item>& armor) {
+    m_armorSet->equip(std::dynamic_pointer_cast<Armor>(armor));
+
+}
+
+void Player::unequipArmor(const std::shared_ptr<Item>& armor) {
+	m_armorSet->unequip(std::dynamic_pointer_cast<Armor>(armor));
+}
+
+void Player::updateDefense() {
+	m_modifiedDefense = m_defense;
+	m_modifiedDefense += m_armorSet->getArmorDefense();
+}
+
+int Player::getModifiedDefense() const {
+	return m_modifiedDefense;
+}
+
+void Player::info(){
+	fmt::print("Name: {0}\nHealth: {1}/{2}\nAttack: {3}\nDefense: {4}\n",m_name,m_health,m_maxHealth,m_attack,m_modifiedDefense);
 }

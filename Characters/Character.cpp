@@ -10,18 +10,44 @@ void Character::getDamaged(Attack attack){
 }
 
 
+
+
 int Character::getHealth() const {
     return m_health;
+}
+
+int Character::getMaxHealth() const {
+	return m_maxHealth;
 }
 
 std::string Character::getName() const {
     return m_name;
 }
 
+int Character::getAttack() const {
+	return m_attack;
+}
+
+int Character::getDefense() const {
+	return m_defense;
+}
+
 void Character::setHealth(int health) {
     m_health = health;
 }
 
+void Character::setMaxHealth(int maxHealth) {
+	m_maxHealth = maxHealth;
+}
+
 void Character::setName(std::string &name) {
     m_name = name;
+}
+
+void Character::setAttack(int attack) {
+	m_attack = attack;
+}
+
+void Character::setDefense(int defense) {
+	m_defense = defense;
 }

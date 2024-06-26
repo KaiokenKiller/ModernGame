@@ -6,7 +6,7 @@
 #define MODERNGAME_ARMOR_H
 #include "Item.h"
 
-class Armor : Item{
+class Armor : public Item{
 protected:
 
     int m_armorValue;
@@ -21,7 +21,7 @@ public:
     ~Armor();
 
 
-    int getArmor();
+    int getArmorValue();
 
 
     void setArmor(int armorValue);

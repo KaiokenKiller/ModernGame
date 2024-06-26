@@ -14,7 +14,9 @@ class Character{
 protected:
     std::string m_name;
     int m_health;
-    std::vector<Attack> m_attacks;
+	int m_maxHealth;
+    int m_attack;
+	int m_defense;
 
 
 
@@ -36,12 +38,26 @@ public:
 
     int getHealth() const;
 
+	int getMaxHealth() const;
+
     std::string getName() const;
+
+	int getAttack() const;
+
+	int getDefense() const;
 
     void setName(std::string &name);
 
     void setHealth(int health);
 
+	void setMaxHealth(int maxHealth);
+
+	void setAttack(int attack);
+
+	void setDefense(int defense);
+
+
+	virtual void info() = 0;
 
 };
 

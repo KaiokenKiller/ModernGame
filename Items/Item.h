@@ -16,7 +16,6 @@ protected:
 
 
 public:
-
     unsigned getId();
     std::string getItemName();
     unsigned getQuantity();

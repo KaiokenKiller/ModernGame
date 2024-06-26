@@ -19,15 +19,11 @@ public:
     equippedArmor();
     ~equippedArmor();
 
-    void equipHelmet(std::shared_ptr<Armor> helmet);
-    void equipTorso(std::shared_ptr<Armor> torso);
-    void equipLegs(std::shared_ptr<Armor> legs);
-    void equipGloves(std::shared_ptr<Armor> gloves);
+    bool equip(std::shared_ptr<Armor> armor);
 
-    void unequipHelmet();
-    void unequipTorso();
-    void unequipLegs();
-    void unequipGloves();
+    bool unequip(const std::shared_ptr<Armor>& armor);
+
+	int getArmorDefense();
 
     std::shared_ptr<Armor> getHelmet();
     std::shared_ptr<Armor> getTorso();

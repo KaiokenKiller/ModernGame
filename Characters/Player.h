@@ -10,16 +10,31 @@
 class Player : Character{
 protected:
     std::unique_ptr<equippedArmor> m_armorSet;
+	std::vector<std::shared_ptr<Item>> m_inventory;
+	int m_modifiedDefense;
 
 public:
     Player();
-    Player(std::string &name);
+    Player(std::string name);
     ~Player();
 
-    // equips a piece of armor
-    void equip(std::shared_ptr<Item*> armor);
-    // dequips a piece of armor
-    void unequip(std::shared_ptr<Item*> armor);
+
+	std::shared_ptr<Item> getItem(unsigned id);
+
+	void addItem(const std::shared_ptr<Item>& item);
+
+
+
+    void equipArmor(const std::shared_ptr<Item>& armor);
+
+    void unequipArmor(const std::shared_ptr<Item>& armor);
+
+	void updateDefense();
+
+	int getModifiedDefense() const;
+
+
+	void info() override;
 };
 
 
