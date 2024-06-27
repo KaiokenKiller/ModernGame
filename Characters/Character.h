@@ -8,7 +8,7 @@
 #include "vector"
 #include "memory"
 #include "../Misc/Attack.h"
-
+#include <fmt/core.h>
 
 class Character{
 protected:
@@ -22,7 +22,8 @@ protected:
 
 public:
 
-    virtual void getDamaged(Attack attack);
+	virtual Attack* createAttack();
+    virtual void getDamaged(Attack* attack);
 
 
 
@@ -33,8 +34,7 @@ public:
 
 
 
-
-
+	bool isAlive();
 
     int getHealth() const;
 
@@ -57,7 +57,7 @@ public:
 	void setDefense(int defense);
 
 
-	virtual void info() = 0;
+	virtual void info();
 
 };
 

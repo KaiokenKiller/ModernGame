@@ -18,6 +18,8 @@ void Adventure::test() {
 
 	player->info();
 
+	player->showInventory();
+
 
 
 }

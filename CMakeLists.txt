@@ -23,7 +23,9 @@ add_executable(ModernGame main.cpp
         Misc/equippedArmor.cpp
         Misc/equippedArmor.h
         Items/Armor.cpp
-        Items/Armor.h)
+        Items/Armor.h
+        Misc/Battle.cpp
+        Misc/Battle.h)
 
 target_link_libraries(
         ModernGame PRIVATE fmt::fmt

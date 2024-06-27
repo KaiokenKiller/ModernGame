@@ -7,7 +7,7 @@
 #include "Character.h"
 #include "../Misc/equippedArmor.h"
 
-class Player : Character{
+class Player : public Character{
 protected:
     std::unique_ptr<equippedArmor> m_armorSet;
 	std::vector<std::shared_ptr<Item>> m_inventory;
@@ -15,7 +15,7 @@ protected:
 
 public:
     Player();
-    Player(std::string name);
+    Player(std::string name,int maxHealth = 100, int defense = 0, int attack = 10);
     ~Player();
 
 
@@ -23,7 +23,7 @@ public:
 
 	void addItem(const std::shared_ptr<Item>& item);
 
-
+	void showInventory();
 
     void equipArmor(const std::shared_ptr<Item>& armor);
 
@@ -32,6 +32,8 @@ public:
 	void updateDefense();
 
 	int getModifiedDefense() const;
+
+
 
 
 	void info() override;

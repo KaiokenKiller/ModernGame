@@ -4,13 +4,28 @@
 
 #include "Character.h"
 
-void Character::getDamaged(Attack attack){
+Attack* Character::createAttack() {
+	Attack* attack = new Attack(m_attack);
+	return attack;
+}
 
-    return;
+void Character::getDamaged(Attack* attack){
+	if (!attack->isTrueDamage()){
+		if (m_defense > attack->getAttack()){
+			attack->setAttack(1);
+		}
+		else{
+			attack->setAttack(attack->getAttack()-m_defense);
+		}
+	}
+	fmt::print("Der Angriff verursacht {0} Schaden!",attack->getAttack());
+	m_health -= attack->getAttack();
 }
 
 
-
+bool Character::isAlive() {
+	return m_health != 0;
+}
 
 int Character::getHealth() const {
     return m_health;
@@ -50,4 +65,8 @@ void Character::setAttack(int attack) {
 
 void Character::setDefense(int defense) {
 	m_defense = defense;
+}
+
+void Character::info() {
+	fmt::print("Name: {0}\nLeben: {1}/{2}\nAngriff: {3}\nVerteidigung: {4}",m_name,m_health,m_maxHealth,m_attack,m_defense);
 }
