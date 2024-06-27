@@ -17,10 +17,12 @@ private:
 public:
 	Battle(Player* player, Enemy* enemy);
 	Battle(Player* player,std::vector<Enemy*> enemies);
-	
+
+	bool enemiesAlive();
 	void selectMenu();
 	void selectAttack();
 	void enemyTurn();
+	void dealDamage(Character* character, Attack* attack);
 	void endOfBattle();
 };
 

@@ -4,6 +4,11 @@
 
 #include "Attack.h"
 
+Attack::Attack(int attackValue, bool trueDamage) {
+	m_attackValue = attackValue;
+	m_trueDamage = trueDamage;
+}
+
 int Attack::getAttack() {
 	return m_attackValue;
 }

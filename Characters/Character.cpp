@@ -5,26 +5,11 @@
 #include "Character.h"
 
 Attack* Character::createAttack() {
-	Attack* attack = new Attack(m_attack);
-	return attack;
+	return new Attack(m_attack);
 }
-
-void Character::getDamaged(Attack* attack){
-	if (!attack->isTrueDamage()){
-		if (m_defense > attack->getAttack()){
-			attack->setAttack(1);
-		}
-		else{
-			attack->setAttack(attack->getAttack()-m_defense);
-		}
-	}
-	fmt::print("Der Angriff verursacht {0} Schaden!",attack->getAttack());
-	m_health -= attack->getAttack();
-}
-
 
 bool Character::isAlive() {
-	return m_health != 0;
+	return m_health > 0;
 }
 
 int Character::getHealth() const {

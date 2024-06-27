@@ -11,7 +11,7 @@ class Player : public Character{
 protected:
     std::unique_ptr<equippedArmor> m_armorSet;
 	std::vector<std::shared_ptr<Item>> m_inventory;
-	int m_modifiedDefense;
+	int m_baseDefense;
 
 public:
     Player();
@@ -31,7 +31,7 @@ public:
 
 	void updateDefense();
 
-	int getModifiedDefense() const;
+	int getBaseDefense() const;
 
 
 

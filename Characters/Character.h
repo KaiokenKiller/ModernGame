@@ -23,12 +23,6 @@ protected:
 public:
 
 	virtual Attack* createAttack();
-    virtual void getDamaged(Attack* attack);
-
-
-
-
-
 
 
 

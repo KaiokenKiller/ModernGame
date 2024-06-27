@@ -4,25 +4,14 @@
 
 #include "Player.h"
 
-Player::Player() {
-    m_name = "Nameless";
-	m_defense = 0;
-	m_modifiedDefense = m_defense;
-	m_armorSet = std::make_unique<equippedArmor>();
-	m_maxHealth = 100;
-	m_health = m_maxHealth;
-	m_attack = 10;
-}
-
 Player::Player(std::string name, int maxHealth, int defense, int attack){
     m_name = name;
-	m_defense = defense;
-	m_modifiedDefense = m_defense;
+	m_armorSet = std::make_unique<equippedArmor>();
+	m_baseDefense = 0;
+	m_defense = m_baseDefense;
 	m_maxHealth = maxHealth;
 	m_health = m_maxHealth;
 	m_attack = attack;
-
-	m_armorSet = std::make_unique<equippedArmor>();
 }
 
 Player::~Player() = default;
@@ -59,14 +48,14 @@ void Player::unequipArmor(const std::shared_ptr<Item>& armor) {
 }
 
 void Player::updateDefense() {
-	m_modifiedDefense = m_defense;
-	m_modifiedDefense += m_armorSet->getArmorDefense();
+	m_defense = m_baseDefense;
+	m_defense += m_armorSet->getArmorDefense();
 }
 
-int Player::getModifiedDefense() const {
-	return m_modifiedDefense;
+int Player::getBaseDefense() const {
+	return m_baseDefense;
 }
 
 void Player::info(){
-	fmt::print("Name: {0}\nLeben: {1}/{2}\nAngriff: {3}\nVerteidigung: {4}\n",m_name,m_health,m_maxHealth,m_attack,m_modifiedDefense);
+	fmt::print("Name: {0}\nLeben: {1}/{2}\nAngriff: {3}\nVerteidigung: {4}\n", m_name, m_health, m_maxHealth, m_attack, m_defense);
 }

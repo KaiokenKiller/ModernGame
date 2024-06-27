@@ -4,23 +4,24 @@
 
 #include "Adventure.h"
 
-Adventure::Adventure() = default;
+Adventure::Adventure(){
+	m_player = std::make_unique<Player>("Hans");
+	//start();
+	test();
+};
 
 Adventure::~Adventure() = default;
 
 void Adventure::test() {
-	Player* player = new Player("Hans");
     std::shared_ptr<Item> testArmor = std::make_shared<Armor>(1,"BasicHelm",1,"helmet",10);
     testArmor->info();
 
-	player->addItem(testArmor);
-	player->equipArmor(testArmor);
+	m_player->addItem(testArmor);
+	m_player->equipArmor(testArmor);
 
-	player->info();
+	m_player->info();
 
-	player->showInventory();
-
-
+	m_player->showInventory();
 
 }
 

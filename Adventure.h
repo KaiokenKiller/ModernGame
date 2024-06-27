@@ -11,7 +11,7 @@
 
 class Adventure {
 private:
-    Player player;
+    std::unique_ptr<Player> m_player;
 
 
 public:
