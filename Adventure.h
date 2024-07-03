@@ -8,10 +8,11 @@
 #include "Characters/Enemy.h"
 #include "Items/Item.h"
 #include "Items/Armor.h"
+#include "Misc/Battle.h"
 
 class Adventure {
 private:
-    std::unique_ptr<Player> m_player;
+    std::shared_ptr<Player> m_player;
 
 
 public:

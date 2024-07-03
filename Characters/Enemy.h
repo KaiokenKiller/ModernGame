@@ -11,7 +11,7 @@ class Enemy :public Character{
 	std::vector<unsigned> lootPool;
 public:
 	Enemy(std::string name, int maxHealth, int defense, int attack);
-	virtual void rewards(Player* player);
+	virtual void rewards(std::shared_ptr<Player> player);
 };
 
 

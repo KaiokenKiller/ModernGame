@@ -11,6 +11,6 @@ Enemy::Enemy(std::string name, int maxHealth, int defense, int attack){
 	m_attack = attack;
 }
 
-void Enemy::rewards(Player* player) {
+void Enemy::rewards(std::shared_ptr<Player> player) {
 	// randomly choose reqard from lootPool and add it to Players inventory
 }

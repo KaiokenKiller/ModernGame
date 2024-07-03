@@ -4,41 +4,55 @@
 
 #include "Battle.h"
 
-Battle::Battle(Player *player, Enemy *enemy) {
-	m_player = player;
+#include <utility>
+
+Battle::Battle(std::shared_ptr<Player> player, std::shared_ptr<Enemy> enemy) {
+	m_player = std::move(player);
 	m_enemies.push_back(enemy);
+	m_enemiesAttacks.push_back(enemy->createAttack());
+	m_deadEnemies = 0;
 	selectMenu();
 }
 
-Battle::Battle(Player *player, std::vector<Enemy *> enemies) {
-	m_player = player;
+Battle::Battle(std::shared_ptr<Player> player, std::vector<std::shared_ptr<Enemy>>* enemies) {
+	m_player = std::move(player);
+	for (auto enemy: *enemies){
+		m_enemies.push_back(enemy);
+	}
 	m_playerAttack = m_player->createAttack();
-	m_enemies = std::move(enemies);
 	
 	int i=0;
-	for (Enemy* enemy: m_enemies){
-		m_enemiesAttacks[i] = enemy->createAttack();
+	for (auto enemy: m_enemies){
+		m_enemiesAttacks.push_back(enemy->createAttack());
 		i++;
 	}
+	m_deadEnemies = 0;
 	selectMenu();
 }
 
 bool Battle::enemiesAlive() {
-	for (Enemy* enemy:m_enemies)
-		if (enemy->isAlive())
-			return true;
-	return false;
+	bool alive = false;
+	m_deadEnemies = 0;
+	for (int i = 0; i< m_enemies.size(); i++) {
+		if (m_enemies[i]->isAlive())
+			alive = true;
+		else
+			m_deadEnemies++;
+
+	}
+	return alive;
 }
 
 void Battle::selectMenu() {
-	fmt::print("Spieler:\n\n{0} ({1}/{2})\n\nEnemies:\n\n",m_player->getName(), m_player->getHealth(), m_player->getMaxHealth());
-	for (Enemy* enemy:m_enemies) {
-		fmt::print("{0} ({1}/{2})\n",enemy->getName(),enemy->getHealth(),enemy->getMaxHealth());
+	fmt::print("\nSpieler:\n\n{0} ({1}/{2})\n\nEnemies:\n\n",m_player->getName(), m_player->getHealth(), m_player->getMaxHealth());
+	for (auto enemy:m_enemies) {
+		if (enemy->isAlive())
+			fmt::print("{0} ({1}/{2})\n",enemy->getName(),enemy->getHealth(),enemy->getMaxHealth());
 	}
 
 	std::string s = "-1";
 	while (s != "1"){
-		fmt::print("(1): Angriff");
+		fmt::print("(1): Angriff\n");
 		std::cin >> s;
 	}
 	if (s == "1")
@@ -46,27 +60,36 @@ void Battle::selectMenu() {
 }
 
 void Battle::selectAttack() {
-	if (m_enemies.size()>1) {
+	if (m_enemies.size()>0) {
 		fmt::print("Wähle einen Gegner:\n\n");
 		int i = 1;
-		for (Enemy *enemy: m_enemies) {
-			fmt::print("({0}) {1} ({2}/{3})\n", i, enemy->getName(), enemy->getHealth(), enemy->getMaxHealth());
-			i++;
+		for (auto enemy: m_enemies) {
+			if (enemy->isAlive()){
+				fmt::print("({0}) {1} ({2}/{3})\n", i, enemy->getName(), enemy->getHealth(), enemy->getMaxHealth());
+				i++;
+				}
 		}
 
 		std::string s = "-1";
 		//Muss sicher gemacht werden!
-		while (stoi(s) > m_enemies.size() || stoi(s) < 0) {
+		while (stoi(s) > m_enemies.size()-m_deadEnemies || stoi(s) < 0) {
 			std::cin >> s;
 		}
 		if (stoi(s) == 0) {
 			selectMenu();
 			return;
 		}
-		dealDamage(m_enemies[stoi(s) - 1], m_playerAttack);
-	}
-	else{
-		dealDamage(m_enemies[0],m_playerAttack);
+
+		i = -1;
+		int j = stoi(s);
+		while(j){
+			i++;
+			if (m_enemies[i]->isAlive()){
+				j--;
+			}
+		}
+
+		dealDamage(m_enemies[i], m_playerAttack);
 	}
 	if (enemiesAlive()) {
 		//Reset Attack for next Turn and pass turn
@@ -80,8 +103,9 @@ void Battle::selectAttack() {
 
 void Battle::enemyTurn() {
 	int i=0;
-	for (Enemy* enemy:m_enemies){
+	for (auto enemy:m_enemies){
 		if (enemy->isAlive()) {
+			fmt::print("\n{0} greift an!\n",enemy->getName());
 			dealDamage(m_player, m_enemiesAttacks[i]);
 			m_enemiesAttacks[i] = enemy->createAttack();
 		}
@@ -95,7 +119,7 @@ void Battle::enemyTurn() {
 	}
 }
 
-void Battle::dealDamage(Character *character, Attack *attack) {
+void Battle::dealDamage(std::shared_ptr<Character> character, Attack *attack) {
 	if (!attack->isTrueDamage()){
 		if (character->getDefense() > attack->getAttack()){
 			attack->setAttack(1);
@@ -104,10 +128,18 @@ void Battle::dealDamage(Character *character, Attack *attack) {
 			attack->setAttack(attack->getAttack()-character->getDefense());
 		}
 	}
-	fmt::print("Der Angriff verursacht {0} Schaden!",attack->getAttack());
+	fmt::print("Der Angriff verursacht {0} Schaden!\n",attack->getAttack());
 	character->setHealth(character->getHealth() - attack->getAttack());
 }
 
 void Battle::endOfBattle() {
-
+	if (!m_player->isAlive()){
+		fmt::print("{0} erliegt seinen Wunden!\n",m_player->getName());
+	}
+	else {
+		fmt::print("{0} konnte den Kampf für sich entscheiden!\n",m_player->getName());
+		for (auto enemy: m_enemies){
+			enemy->rewards(m_player);
+		}
+	}
 }

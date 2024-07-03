@@ -5,7 +5,7 @@
 #include "Adventure.h"
 
 Adventure::Adventure(){
-	m_player = std::make_unique<Player>("Hans");
+	m_player = std::make_shared<Player>("Hans");
 	//start();
 	test();
 };
@@ -22,6 +22,15 @@ void Adventure::test() {
 	m_player->info();
 
 	m_player->showInventory();
+
+	std::shared_ptr<Enemy> dummy1 = std::make_shared<Enemy>("Napstablock",35,2,2);
+	std::shared_ptr<Enemy> dummy2 = std::make_shared<Enemy>("Mad dummy",55,0,20);
+
+	std::vector<std::shared_ptr<Enemy>>* temp = new std::vector<std::shared_ptr<Enemy>>;
+	temp->emplace_back(dummy1);
+	temp->emplace_back(dummy2);
+
+	Battle(m_player,temp);
 
 }
 
