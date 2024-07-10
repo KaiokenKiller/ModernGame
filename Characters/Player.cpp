@@ -4,7 +4,9 @@
 
 #include "Player.h"
 
-Player::Player(std::string name, int maxHealth, int defense, int attack){
+#include <utility>
+
+Player::Player(const std::string &name, int maxHealth, int defense, int attack){
     m_name = name;
 	m_armorSet = std::make_unique<equippedArmor>();
 	m_baseDefense = 0;
@@ -31,10 +33,11 @@ void Player::addItem(const std::shared_ptr<Item>& item) {
 }
 
 void Player::showInventory() {
-	for (auto element:m_inventory){
+	for (const auto& element:m_inventory){
 		if (element->getQuantity()>0)
-			fmt::print("{0}\n",element->getItemName());
+			fmt::print("{0:03}. {1} [{2}]\n",element->getId(),element->getItemName(), element->getTag());
 	}
+	fmt::print("\n");
 }
 
 void Player::equipArmor(const std::shared_ptr<Item>& armor) {
@@ -57,5 +60,5 @@ int Player::getBaseDefense() const {
 }
 
 void Player::info(){
-	fmt::print("Name: {0}\nLeben: {1}/{2}\nAngriff: {3}\nVerteidigung: {4}\n", m_name, m_health, m_maxHealth, m_attack, m_defense);
+	fmt::print("Name: {0}\nLeben: {1}/{2}\nAngriff: {3}\nVerteidigung: {4}\n\n", m_name, m_health, m_maxHealth, m_attack, m_defense);
 }

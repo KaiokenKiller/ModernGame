@@ -28,17 +28,17 @@ public:
 
 
 
-	bool isAlive();
+	[[nodiscard]] bool isAlive() const;
 
-    int getHealth() const;
+    [[nodiscard]] int getHealth() const;
 
-	int getMaxHealth() const;
+	[[nodiscard]] int getMaxHealth() const;
 
-    std::string getName() const;
+    [[nodiscard]] std::string getName() const;
 
-	int getAttack() const;
+	[[nodiscard]] int getAttack() const;
 
-	int getDefense() const;
+	[[nodiscard]] int getDefense() const;
 
     void setName(std::string &name);
 

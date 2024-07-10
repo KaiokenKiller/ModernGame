@@ -4,7 +4,7 @@
 
 #include "Item.h"
 
-unsigned int Item::getId() {
+unsigned int Item::getId() const {
     return m_id;
 }
 
@@ -12,7 +12,7 @@ std::string Item::getItemName() {
     return m_itemName;
 }
 
-unsigned int Item::getQuantity() {
+unsigned int Item::getQuantity() const {
     return m_quantity;
 }
 

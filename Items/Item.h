@@ -16,9 +16,9 @@ protected:
 
 
 public:
-    unsigned getId();
+    unsigned getId() const;
     std::string getItemName();
-    unsigned getQuantity();
+    unsigned getQuantity() const;
     std::string getTag();
 
 

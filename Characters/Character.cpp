@@ -8,7 +8,7 @@ Attack* Character::createAttack() {
 	return new Attack(m_attack);
 }
 
-bool Character::isAlive() {
+bool Character::isAlive() const {
 	return m_health > 0;
 }
 

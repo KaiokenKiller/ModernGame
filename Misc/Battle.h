@@ -16,14 +16,15 @@ private:
 	unsigned m_deadEnemies;
 	std::vector<Attack*> m_enemiesAttacks;
 public:
-	Battle(std::shared_ptr<Player> player, std::shared_ptr<Enemy> enemy);
-	Battle(std::shared_ptr<Player> player,std::vector<std::shared_ptr<Enemy>>* enemies);
+	Battle(std::shared_ptr<Player> &player,std::vector<std::shared_ptr<Enemy>> &enemies);
+	Battle(std::shared_ptr<Player> &player, std::shared_ptr<Enemy> &enemy);
+
 
 	bool enemiesAlive();
 	void selectMenu();
 	void selectAttack();
 	void enemyTurn();
-	void dealDamage(std::shared_ptr<Character> character, Attack* attack);
+	static void dealDamage(const std::shared_ptr<Character>& character, Attack* attack);
 	void endOfBattle();
 };
 

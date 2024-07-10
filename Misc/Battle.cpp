@@ -4,25 +4,24 @@
 
 #include "Battle.h"
 
-#include <utility>
-
-Battle::Battle(std::shared_ptr<Player> player, std::shared_ptr<Enemy> enemy) {
-	m_player = std::move(player);
+Battle::Battle(std::shared_ptr<Player> &player, std::shared_ptr<Enemy>& enemy) {
+	m_player = player;
 	m_enemies.push_back(enemy);
+	m_playerAttack = m_player->createAttack();
 	m_enemiesAttacks.push_back(enemy->createAttack());
 	m_deadEnemies = 0;
 	selectMenu();
 }
 
-Battle::Battle(std::shared_ptr<Player> player, std::vector<std::shared_ptr<Enemy>>* enemies) {
-	m_player = std::move(player);
-	for (auto enemy: *enemies){
+Battle::Battle(std::shared_ptr<Player> &player, std::vector<std::shared_ptr<Enemy>> &enemies) {
+	m_player = player;
+	for (const auto& enemy: enemies){
 		m_enemies.push_back(enemy);
 	}
 	m_playerAttack = m_player->createAttack();
 	
 	int i=0;
-	for (auto enemy: m_enemies){
+	for (const auto& enemy: m_enemies){
 		m_enemiesAttacks.push_back(enemy->createAttack());
 		i++;
 	}
@@ -33,8 +32,8 @@ Battle::Battle(std::shared_ptr<Player> player, std::vector<std::shared_ptr<Enemy
 bool Battle::enemiesAlive() {
 	bool alive = false;
 	m_deadEnemies = 0;
-	for (int i = 0; i< m_enemies.size(); i++) {
-		if (m_enemies[i]->isAlive())
+	for (const auto& enemy:m_enemies) {
+		if (enemy->isAlive())
 			alive = true;
 		else
 			m_deadEnemies++;
@@ -45,7 +44,7 @@ bool Battle::enemiesAlive() {
 
 void Battle::selectMenu() {
 	fmt::print("\nSpieler:\n\n{0} ({1}/{2})\n\nEnemies:\n\n",m_player->getName(), m_player->getHealth(), m_player->getMaxHealth());
-	for (auto enemy:m_enemies) {
+	for (const auto& enemy:m_enemies) {
 		if (enemy->isAlive())
 			fmt::print("{0} ({1}/{2})\n",enemy->getName(),enemy->getHealth(),enemy->getMaxHealth());
 	}
@@ -60,10 +59,10 @@ void Battle::selectMenu() {
 }
 
 void Battle::selectAttack() {
-	if (m_enemies.size()>0) {
+	if (!m_enemies.empty()) {
 		fmt::print("Wähle einen Gegner:\n\n");
 		int i = 1;
-		for (auto enemy: m_enemies) {
+		for (const auto& enemy: m_enemies) {
 			if (enemy->isAlive()){
 				fmt::print("({0}) {1} ({2}/{3})\n", i, enemy->getName(), enemy->getHealth(), enemy->getMaxHealth());
 				i++;
@@ -90,6 +89,8 @@ void Battle::selectAttack() {
 		}
 
 		dealDamage(m_enemies[i], m_playerAttack);
+		if (!m_enemies[i]->isAlive())
+			fmt::print("{0} wurde besiegt!",m_enemies[i]->getName());
 	}
 	if (enemiesAlive()) {
 		//Reset Attack for next Turn and pass turn
@@ -103,7 +104,7 @@ void Battle::selectAttack() {
 
 void Battle::enemyTurn() {
 	int i=0;
-	for (auto enemy:m_enemies){
+	for (const auto& enemy:m_enemies){
 		if (enemy->isAlive()) {
 			fmt::print("\n{0} greift an!\n",enemy->getName());
 			dealDamage(m_player, m_enemiesAttacks[i]);
@@ -119,9 +120,9 @@ void Battle::enemyTurn() {
 	}
 }
 
-void Battle::dealDamage(std::shared_ptr<Character> character, Attack *attack) {
+void Battle::dealDamage(const std::shared_ptr<Character>& character, Attack *attack) {
 	if (!attack->isTrueDamage()){
-		if (character->getDefense() > attack->getAttack()){
+		if (character->getDefense() >= attack->getAttack()){
 			attack->setAttack(1);
 		}
 		else{
@@ -138,7 +139,8 @@ void Battle::endOfBattle() {
 	}
 	else {
 		fmt::print("{0} konnte den Kampf für sich entscheiden!\n",m_player->getName());
-		for (auto enemy: m_enemies){
+		m_player->setHealth(m_player->getMaxHealth());
+		for (const auto& enemy: m_enemies){
 			enemy->rewards(m_player);
 		}
 	}

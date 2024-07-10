@@ -10,10 +10,10 @@ private:
 	int m_attackValue;
 	bool m_trueDamage;
 public:
-	Attack(int attackValue, bool trueDamage = false);
+	explicit Attack(int attackValue, bool trueDamage = false);
 
-	int getAttack();
-	bool isTrueDamage();
+	int getAttack() const;
+	bool isTrueDamage() const;
 	void setAttack(int attack);
 	void setTrueDamage(bool trueDamage);
 };

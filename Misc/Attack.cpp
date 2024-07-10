@@ -9,11 +9,11 @@ Attack::Attack(int attackValue, bool trueDamage) {
 	m_trueDamage = trueDamage;
 }
 
-int Attack::getAttack() {
+int Attack::getAttack() const {
 	return m_attackValue;
 }
 
-bool Attack::isTrueDamage() {
+bool Attack::isTrueDamage() const {
 	return m_trueDamage;
 }
 

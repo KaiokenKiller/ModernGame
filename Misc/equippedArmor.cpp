@@ -12,8 +12,8 @@ equippedArmor::equippedArmor(){
 }
 equippedArmor::~equippedArmor() = default;
 
-bool equippedArmor::equip(std::shared_ptr<Armor> armor){
-	if (armor->getTag() == "helmet"){;
+bool equippedArmor::equip(const std::shared_ptr<Armor>& armor){
+	if (armor->getTag() == "helmet"){
 		m_helmet = armor;
 		return true;
 	}

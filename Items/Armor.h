@@ -16,12 +16,12 @@ public:
 
     Armor();
 
-    Armor(unsigned id, std::string itemName, unsigned quantity, std::string tag, int armorValue);
+    Armor(unsigned id,const std::string &itemName, unsigned quantity, std::string tag, int armorValue);
 
     ~Armor();
 
 
-    int getArmorValue();
+    int getArmorValue() const;
 
 
     void setArmor(int armorValue);

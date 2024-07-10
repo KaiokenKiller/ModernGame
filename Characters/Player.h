@@ -14,8 +14,7 @@ protected:
 	int m_baseDefense;
 
 public:
-    Player();
-    Player(std::string name,int maxHealth = 100, int defense = 0, int attack = 10);
+    explicit Player(const std::string &name,int maxHealth = 100, int defense = 0, int attack = 10);
     ~Player();
 
 
@@ -31,7 +30,7 @@ public:
 
 	void updateDefense();
 
-	int getBaseDefense() const;
+	[[nodiscard]] int getBaseDefense() const;
 
 
 

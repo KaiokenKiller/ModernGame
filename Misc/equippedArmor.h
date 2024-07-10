@@ -19,7 +19,7 @@ public:
     equippedArmor();
     ~equippedArmor();
 
-    bool equip(std::shared_ptr<Armor> armor);
+    bool equip(const std::shared_ptr<Armor>& armor);
 
     bool unequip(const std::shared_ptr<Armor>& armor);
 

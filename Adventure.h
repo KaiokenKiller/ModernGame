@@ -9,6 +9,7 @@
 #include "Items/Item.h"
 #include "Items/Armor.h"
 #include "Misc/Battle.h"
+#include "Areas/StarterArea.h"
 
 class Adventure {
 private:
