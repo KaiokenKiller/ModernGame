@@ -8,7 +8,7 @@ Adventure::Adventure(){
 	std::string name;
 	fmt::print("Nenne deinen Namen Held: ");
 	std::cin >> name;
-	fmt::print("Und so beginnt das Abenteuer von {}\n\n",name);
+	fmt::print("Und so beginnt das Abenteuer von {}\n",name);
 	std::cin.get();
 	std::cin.get();
 

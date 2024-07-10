@@ -43,7 +43,7 @@ bool Battle::enemiesAlive() {
 }
 
 void Battle::selectMenu() {
-	fmt::print("\nSpieler:\n\n{0} ({1}/{2})\n\nEnemies:\n\n",m_player->getName(), m_player->getHealth(), m_player->getMaxHealth());
+	fmt::print("Spieler:\n\n{0} ({1}/{2})\n\nEnemies:\n\n",m_player->getName(), m_player->getHealth(), m_player->getMaxHealth());
 	for (const auto& enemy:m_enemies) {
 		if (enemy->isAlive())
 			fmt::print("{0} ({1}/{2})\n",enemy->getName(),enemy->getHealth(),enemy->getMaxHealth());
@@ -91,6 +91,8 @@ void Battle::selectAttack() {
 		dealDamage(m_enemies[i], m_playerAttack);
 		if (!m_enemies[i]->isAlive())
 			fmt::print("{0} wurde besiegt!",m_enemies[i]->getName());
+		std::cin.get();
+		std::cin.get();
 	}
 	if (enemiesAlive()) {
 		//Reset Attack for next Turn and pass turn
@@ -106,8 +108,9 @@ void Battle::enemyTurn() {
 	int i=0;
 	for (const auto& enemy:m_enemies){
 		if (enemy->isAlive()) {
-			fmt::print("\n{0} greift an!\n",enemy->getName());
+			fmt::print("{0} greift an!\n",enemy->getName());
 			dealDamage(m_player, m_enemiesAttacks[i]);
+			std::cin.get();
 			m_enemiesAttacks[i] = enemy->createAttack();
 		}
 		i++;
