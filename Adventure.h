@@ -10,6 +10,8 @@
 #include "Items/Armor.h"
 #include "Misc/Battle.h"
 #include "Areas/StarterArea.h"
+#include <chrono>
+#include <thread>
 
 class Adventure {
 private:

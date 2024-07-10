@@ -5,7 +5,14 @@
 #include "Adventure.h"
 
 Adventure::Adventure(){
-	m_player = std::make_shared<Player>("Hans");
+	std::string name;
+	fmt::print("Nenne deinen Namen Held: ");
+	std::cin >> name;
+	fmt::print("Und so beginnt das Abenteuer von {}\n\n",name);
+	std::cin.get();
+	std::cin.get();
+
+	m_player = std::make_shared<Player>(name);
 	//start();
 	test();
 }
