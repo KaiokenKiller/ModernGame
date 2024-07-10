@@ -2,9 +2,9 @@
 // Created by aj on 10.07.24.
 //
 
-#include "StarterArea.h"
+#include "BanditArea.h"
 
-StarterArea::StarterArea(const std::string &areaname, unsigned minEnemyCount, unsigned maxEnemyCount){
+BanditArea::BanditArea(const std::string &areaname, unsigned minEnemyCount, unsigned maxEnemyCount){
 	m_areaname = areaname;
 	m_enemyTypeCount = 4;
 	m_minEnemyCount = minEnemyCount;
@@ -12,7 +12,7 @@ StarterArea::StarterArea(const std::string &areaname, unsigned minEnemyCount, un
 }
 
 //randomly generate Vector of enemies from the Area and return it
-std::vector<std::shared_ptr<Enemy>>& StarterArea::generateEnemies() {
+std::vector<std::shared_ptr<Enemy>>& BanditArea::generateEnemies() {
 	auto generatedEnemies = new std::vector<std::shared_ptr<Enemy>>();
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -26,28 +26,23 @@ std::vector<std::shared_ptr<Enemy>>& StarterArea::generateEnemies() {
 
 		switch (rngEnemyType) {
 			case 0: {
-				auto skeleton = std::make_shared<Enemy>("Skelett", 35, 5, 5);
-				generatedEnemies->push_back(skeleton);
+				auto bandit = std::make_shared<Enemy>("Bandit", 40, 3, 5);
+				generatedEnemies->push_back(bandit);
 				break;
 			}
 			case 1: {
-				auto wulf = std::make_shared<Enemy>("Wolf", 30, 0, 10);
-				generatedEnemies->push_back(wulf);
+				auto banditArcher = std::make_shared<Enemy>("Banditen Bogenschütze", 30, 0, 10);
+				generatedEnemies->push_back(banditArcher);
 				break;
 			}
 			case 2: {
-				auto goblin = std::make_shared<Enemy>("Goblin", 40, 3, 7);
-				generatedEnemies->push_back(goblin);
-				break;
-			}
-			case 3: {
-				auto slime = std::make_shared<Enemy>("Schleim", 30, 0, 3);
-				generatedEnemies->push_back(slime);
+				auto banditSwordsman = std::make_shared<Enemy>("Banditen Schwertkämpfer", 50, 3, 7);
+				generatedEnemies->push_back(banditSwordsman);
 				break;
 			}
 			default: {
-				auto defaultSlime = std::make_shared<Enemy>("Schleim", 30, 0, 3);
-				generatedEnemies->push_back(defaultSlime);
+				auto bandit = std::make_shared<Enemy>("Bandit", 30, 0, 3);
+				generatedEnemies->push_back(bandit);
 				break;
 			}
 		}

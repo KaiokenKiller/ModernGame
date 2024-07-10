@@ -29,7 +29,9 @@ add_executable(ModernGame main.cpp
         Areas/Area.cpp
         Areas/Area.h
         Areas/StarterArea.cpp
-        Areas/StarterArea.h)
+        Areas/StarterArea.h
+        Areas/BanditArea.cpp
+        Areas/BanditArea.h)
 
 target_link_libraries(
         ModernGame PRIVATE fmt::fmt

@@ -70,7 +70,7 @@ void Battle::selectAttack() {
 		}
 
 		std::string s = "-1";
-		//Muss sicher gemacht werden!
+
 		while (stoi(s) > m_enemies.size()-m_deadEnemies || stoi(s) < 0) {
 			std::cin >> s;
 		}

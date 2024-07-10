@@ -10,8 +10,10 @@
 #include "Items/Armor.h"
 #include "Misc/Battle.h"
 #include "Areas/StarterArea.h"
+#include "Areas/BanditArea.h"
 #include <chrono>
 #include <thread>
+
 
 class Adventure {
 private:
@@ -25,6 +27,7 @@ public:
 
     void start();
     void test();
+	static void displayText(std::vector<std::string>& text);
 };
 
 

@@ -13,7 +13,9 @@
 class Area {
 protected:
 	std::string m_areaname;
-	unsigned enemyTypeCount = 1; // Should never be less than 1
+	unsigned m_enemyTypeCount; // Should never be less than 1
+	unsigned m_maxEnemyCount; // Should never be less than 1
+	unsigned m_minEnemyCount; // Should never be lower than max
 public:
 	virtual std::vector<std::shared_ptr<Enemy>>& generateEnemies() = 0;
 	std::string getAreaname();

@@ -9,7 +9,7 @@
 
 class StarterArea : public Area{
 public:
-	explicit StarterArea(const std::string &areaname = "Void");
+	explicit StarterArea(const std::string &areaname = "Void", unsigned minEnemyCount = 1, unsigned maxEnemyCount = 3);
 	std::vector<std::shared_ptr<Enemy>>& generateEnemies() override;
 };
 
