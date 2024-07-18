@@ -32,6 +32,10 @@ void Armor::setArmor(int armorValue) {
     m_armorValue = armorValue;
 }
 
+void Armor::use(Battle &battle) {
+	battle.m_player->equipArmor(m_id);
+}
+
 void Armor::info() {
     fmt::print("ID: {0} \nName: {1} \nAnzahl: {2} \nVerteidigung: {3} \nTag: {4}\n\n",m_id,m_itemName,m_quantity,m_armorValue,m_tag);
 }

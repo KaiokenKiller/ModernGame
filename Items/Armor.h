@@ -16,16 +16,14 @@ public:
 
     Armor();
 
+	// valid Armor tags are helmet, torso, legs, gloves
     Armor(unsigned id,const std::string &itemName, unsigned quantity, std::string tag, int armorValue);
 
     ~Armor();
-
-
-    int getArmorValue() const;
-
-
+    [[nodiscard]] int getArmorValue() const;
     void setArmor(int armorValue);
 
+	void use(Battle &battle) override;
     void info() override;
 };
 

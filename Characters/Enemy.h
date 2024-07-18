@@ -6,11 +6,12 @@
 #define MODERNGAME_ENEMY_H
 #include "Character.h"
 #include "Player.h"
+#include <random>
 
 class Enemy :public Character{
-	std::vector<unsigned> lootPool;
+	std::vector<unsigned> m_lootPool;
 public:
-	Enemy(const std::string &name, int maxHealth, int defense, int attack);
+	Enemy(const std::string &name, int maxHealth, int defense, int attack,const std::vector<unsigned>& lootPool);
 	virtual void rewards(const std::shared_ptr<Player> &player);
 };
 

@@ -22,7 +22,8 @@ public:
 
 
 	std::shared_ptr<Item> getItem(unsigned id);
-	void addItem(const std::shared_ptr<Item>& item);
+	void addItem(unsigned id);
+	void removeItem(unsigned id);
 	void showInventory();
 
     void equipArmor(const std::shared_ptr<Item>& armor);
@@ -30,8 +31,8 @@ public:
 
 	void updateDefense();
 
-	void equipWeapon(int id);
-	void unequipWeapon(int id);
+	void equipWeapon(unsigned id);
+	void unequipWeapon(unsigned id);
 
 	[[nodiscard]] int getBaseDefense() const;
 

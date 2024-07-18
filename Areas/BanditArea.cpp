@@ -26,22 +26,68 @@ std::vector<std::shared_ptr<Enemy>>& BanditArea::generateEnemies() {
 
 		switch (rngEnemyType) {
 			case 0: {
-				auto bandit = std::make_shared<Enemy>("Bandit", 40, 3, 5);
+				std::vector<unsigned> loot;
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(2);
+				loot.push_back(3);
+				loot.push_back(4);
+				loot.push_back(5);
+				loot.push_back(6);
+				loot.push_back(12);
+				loot.push_back(12);
+
+				auto bandit = std::make_shared<Enemy>("Bandit", 20, 3, 5, loot);
 				generatedEnemies->push_back(bandit);
 				break;
 			}
 			case 1: {
-				auto banditArcher = std::make_shared<Enemy>("Banditen Bogenschütze", 30, 0, 10);
+				std::vector<unsigned> loot;
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(3);
+				loot.push_back(4);
+				loot.push_back(5);
+				loot.push_back(6);
+				loot.push_back(12);
+				loot.push_back(13);
+
+				auto banditArcher = std::make_shared<Enemy>("Banditen Bogenschütze", 20, 0, 10, loot);
 				generatedEnemies->push_back(banditArcher);
 				break;
 			}
 			case 2: {
-				auto banditSwordsman = std::make_shared<Enemy>("Banditen Schwertkämpfer", 50, 3, 7);
+				std::vector<unsigned> loot;
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(2);
+				loot.push_back(2);
+				loot.push_back(3);
+				loot.push_back(4);
+				loot.push_back(5);
+				loot.push_back(6);
+				loot.push_back(12);
+				auto banditSwordsman = std::make_shared<Enemy>("Banditen Schwertkämpfer", 25, 3, 7, loot);
 				generatedEnemies->push_back(banditSwordsman);
 				break;
 			}
 			default: {
-				auto bandit = std::make_shared<Enemy>("Bandit", 30, 0, 3);
+				std::vector<unsigned> loot;
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(2);
+				loot.push_back(3);
+				loot.push_back(4);
+				loot.push_back(5);
+				loot.push_back(6);
+				loot.push_back(12);
+				loot.push_back(12);
+				auto bandit = std::make_shared<Enemy>("Bandit", 20, 3, 5, loot);
 				generatedEnemies->push_back(bandit);
 				break;
 			}

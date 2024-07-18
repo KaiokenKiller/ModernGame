@@ -21,7 +21,10 @@ public:
 	void setAttackValue(int attack);
 	void setTrueDamage(bool trueDamage);
 
+	void use(Battle &battle) override;
 	void info() override;
+
+
 };
 
 

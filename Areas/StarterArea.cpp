@@ -26,27 +26,57 @@ std::vector<std::shared_ptr<Enemy>>& StarterArea::generateEnemies() {
 
 		switch (rngEnemyType) {
 			case 0: {
-				auto skeleton = std::make_shared<Enemy>("Skelett", 35, 5, 5);
+				std::vector<unsigned> loot;
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(1);
+				loot.push_back(1);
+				loot.push_back(2);
+				loot.push_back(3);
+				loot.push_back(6);
+				auto skeleton = std::make_shared<Enemy>("Skelett", 20, 5, 5,loot);
 				generatedEnemies->push_back(skeleton);
 				break;
 			}
 			case 1: {
-				auto wulf = std::make_shared<Enemy>("Wolf", 30, 0, 10);
+				std::vector<unsigned> loot;
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(1);
+				loot.push_back(5);
+				loot.push_back(5);
+
+				auto wulf = std::make_shared<Enemy>("Wolf", 20, 0, 10,loot);
 				generatedEnemies->push_back(wulf);
 				break;
 			}
 			case 2: {
-				auto goblin = std::make_shared<Enemy>("Goblin", 40, 3, 7);
+				std::vector<unsigned> loot;
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(0);
+				loot.push_back(3);
+				loot.push_back(4);
+				loot.push_back(5);
+				loot.push_back(6);
+
+				auto goblin = std::make_shared<Enemy>("Goblin", 25, 3, 7,loot);
 				generatedEnemies->push_back(goblin);
 				break;
 			}
 			case 3: {
-				auto slime = std::make_shared<Enemy>("Schleim", 30, 0, 3);
+				std::vector<unsigned> loot;
+				loot.push_back(0);
+				auto slime = std::make_shared<Enemy>("Schleim", 15, 0, 3,loot);
 				generatedEnemies->push_back(slime);
 				break;
 			}
 			default: {
-				auto defaultSlime = std::make_shared<Enemy>("Schleim", 30, 0, 3);
+				std::vector<unsigned> loot;
+				loot.push_back(0);
+				auto defaultSlime = std::make_shared<Enemy>("Schleim", 15, 0, 3,loot);
 				generatedEnemies->push_back(defaultSlime);
 				break;
 			}

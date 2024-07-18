@@ -49,7 +49,7 @@ void Adventure::test() {
 	Battle(m_player,temp);
 	*/
 
-	StarterArea grasslands("Grassland");
+	StarterArea grasslands("Grasland");
 	Battle temp(m_player,grasslands.generateEnemies());
 }
 
@@ -59,8 +59,8 @@ void Adventure::start() {
 
 	textVec.push_back(fmt::format("Kapitel I:\n"));
 	textVec.push_back(fmt::format("Du wachst in der Scheune eines kleinen Dorfes auf."));
-	textVec.push_back(fmt::format("Ein besorgter Dorfbewohner erzählt dir dass in letzter Zeit viele Monster im angrenzenden Grassland aufgetaucht sind."));
-	textVec.push_back(fmt::format("Er vermutet dass die Monster aus einer nahegelegenen Höhle kommen, welche hinter dem Grassland liegt und bittet dich diese zu untersuchen."));
+	textVec.push_back(fmt::format("Ein besorgter Dorfbewohner erzählt dir dass in letzter Zeit viele Monster im angrenzenden Grasland aufgetaucht sind."));
+	textVec.push_back(fmt::format("Er vermutet dass die Monster aus einer nahegelegenen Höhle kommen, welche hinter dem Grasland liegt und bittet dich diese zu untersuchen."));
 	displayText(textVec);
 	fmt::print("Wirst du dem Dorfbewohner helfen?\n1.Ja\n2.Nein\n");
 
@@ -70,21 +70,21 @@ void Adventure::start() {
 	}
 	if(choice == "1"){
 		textVec.push_back(fmt::format("Auf dem Weg zur Dorfgrenze läuft dir ein kleines Mädchen über den Weg."));
-		textVec.push_back(fmt::format("\"Mein Herr das Grassland ist zu gefährlich um zur Höhle zu kommen."));
+		textVec.push_back(fmt::format("\"Mein Herr das Grasland ist zu gefährlich um zur Höhle zu kommen."));
 		textVec.push_back(fmt::format("Nehmt lieber den Pfad durch den Wald dort habe ich noch nie Monster gesehen.\""));
 		displayText(textVec);
 
-		fmt::print("Welchen Weg wählst du?\n1.Das Grassland ist offener dort weiß ich genau was mich erwartet.\n2.Ein sicherer Weg durch den Wald hört sich verlockend an.\n");
+		fmt::print("Welchen Weg wählst du?\n1.Das Grasland ist offener dort weiß ich genau was mich erwartet.\n2.Ein sicherer Weg durch den Wald hört sich verlockend an.\n");
 
 		while (choice != "1" && choice != "2"){
 			std::cin >> choice;
 		}
 		if (choice == "1"){
-			textVec.push_back(fmt::format("Auf dem Weg durchs Grassland musst du dich durch hohe Gräser schlagen"));
+			textVec.push_back(fmt::format("Auf dem Weg durchs Grasland musst du dich durch hohe Gräser schlagen"));
 			textVec.push_back(fmt::format("Du hörts ein rascheln aus dem Gras und eine Gruppe Monster springt herraus"));
 			displayText(textVec);
 
-			StarterArea grassland("Grassland",2,3);
+			StarterArea grassland("Grasland",2,3);
 			Battle battle1(m_player,grassland.generateEnemies());
 			if (!m_player->isAlive())
 				return;

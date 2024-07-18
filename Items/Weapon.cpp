@@ -34,6 +34,10 @@ void Weapon::setTrueDamage(bool trueDamage) {
 	m_trueDamage = trueDamage;
 }
 
+void Weapon::use(Battle &battle) {
+	battle.m_player->equipWeapon(m_id);
+}
+
 void Weapon::info() {
 	fmt::print("ID: {0} \nName: {1} \nAnzahl: {2} \nAngriff: {3} \nTag: {4} \nEigenschaften: {5}\n\n",m_id,m_itemName,m_quantity,m_attackValue,m_tag,isTrueDamage() ? "True Damage" : "");
 }

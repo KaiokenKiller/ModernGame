@@ -49,18 +49,20 @@ void Battle::selectMenu() {
 			fmt::print("{0} ({1}/{2})\n",enemy->getName(),enemy->getHealth(),enemy->getMaxHealth());
 	}
 
-	std::string s = "-1";
-	while (s != "1"){
-		fmt::print("(1): Angriff\n");
-		std::cin >> s;
+	std::string choice = "-1";
+	while (choice != "1" && choice != "2"){
+		fmt::print("(1): Angriff\n(2): Inventar\n");
+		std::cin >> choice;
 	}
-	if (s == "1")
+	if (choice == "1")
 		selectAttack();
+	if (choice == "2")
+		selectInventory();
 }
 
 void Battle::selectAttack() {
 	if (!m_enemies.empty()) {
-		fmt::print("Wähle einen Gegner:\n\n");
+		fmt::print("(0): Zurück\nWähle einen Gegner:\n\n");
 		int i = 1;
 		for (const auto& enemy: m_enemies) {
 			if (enemy->isAlive()){
@@ -69,18 +71,18 @@ void Battle::selectAttack() {
 				}
 		}
 
-		std::string s = "-1";
+		std::string choice = "-1";
 
-		while (stoi(s) > m_enemies.size()-m_deadEnemies || stoi(s) < 0) {
-			std::cin >> s;
+		while (stoi(choice) > m_enemies.size() - m_deadEnemies || stoi(choice) < 0) {
+			std::cin >> choice;
 		}
-		if (stoi(s) == 0) {
+		if (stoi(choice) == 0) {
 			selectMenu();
 			return;
 		}
 
 		i = -1;
-		int j = stoi(s);
+		int j = stoi(choice);
 		while(j){
 			i++;
 			if (m_enemies[i]->isAlive()){
@@ -104,13 +106,46 @@ void Battle::selectAttack() {
 	}
 }
 
+void Battle::selectInventory(){
+	std::string choice;
+	bool finished = false;
+	m_player->showInventory();
+
+	while (!finished){
+		fmt::print("(0): Zurück\nWähle einen Gegenstand(ID):\n");
+		std::cin >> choice;
+
+		if (choice == "0")
+			finished = true;
+		else {
+			std::shared_ptr<Item> temp = m_player->getItem(std::stoi(choice));
+			if (temp == nullptr)
+				fmt::print("Du besitz keinen solchen Gegenstand!\n");
+			else {
+				temp->info();
+				choice = "";
+				while (choice != "0" && choice != "1") {
+					fmt::print("Möchtest du diesen Gegenstand benutzen?\n(0): Nein\n(1): Ja\n");
+					std::cin >> choice;
+				}
+				if (choice == "1") {
+					temp->use(this);
+					finished = true;
+				}
+			}
+		}
+	}
+}
+
+
+}
+
 void Battle::enemyTurn() {
 	int i=0;
 	for (const auto& enemy:m_enemies){
 		if (enemy->isAlive()) {
 			fmt::print("{0} greift an!\n",enemy->getName());
 			dealDamage(m_player, m_enemiesAttacks[i]);
-			std::cin.get();
 			m_enemiesAttacks[i] = enemy->createAttack();
 		}
 		i++;
@@ -146,5 +181,6 @@ void Battle::endOfBattle() {
 		for (const auto& enemy: m_enemies){
 			enemy->rewards(m_player);
 		}
+		std::cin.get();
 	}
 }

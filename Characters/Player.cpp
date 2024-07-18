@@ -15,30 +15,26 @@ Player::Player(const std::string &name, int maxHealth, int defense, int attack){
 	m_health = m_maxHealth;
 	m_attack = attack;
 	m_equippedWeapon = std::make_shared<Weapon>();
+	m_inventory = std::make_unique<Itemlist>();
 }
 
 Player::~Player() = default;
 
 
 std::shared_ptr<Item> Player::getItem(unsigned id){
-	if (id > m_inventory.size()){
-		fmt::print("Es gibt kein Item mit der ID {0}\n",id);
-		return nullptr;
-	}
-
-	return m_inventory[id];
+	return m_inventory->getItem(id);
 }
 
-void Player::addItem(const std::shared_ptr<Item>& item) {
-	m_inventory.emplace_back(item);
+void Player::addItem(unsigned int id){
+	m_inventory->addItem(id);
+}
+
+void Player::removeItem(unsigned int id){
+	m_inventory->removeItem(id);
 }
 
 void Player::showInventory() {
-	for (const auto& element:m_inventory){
-		if (element->getQuantity()>0)
-			fmt::print("{0:03}. {1} [{2}]\n",element->getId(),element->getItemName(), element->getTag());
-	}
-	fmt::print("\n");
+	m_inventory->showInventory();
 }
 
 void Player::equipArmor(const std::shared_ptr<Item>& armor) {

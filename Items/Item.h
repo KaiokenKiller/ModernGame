@@ -6,6 +6,7 @@
 #define MODERNGAME_ITEM_H
 #include "iostream"
 #include <fmt/printf.h>
+#include "../Misc/Battle.h"
 
 class Item {
 protected:
@@ -16,9 +17,9 @@ protected:
 
 
 public:
-    unsigned getId() const;
+    [[nodiscard]] unsigned getId() const;
     std::string getItemName();
-    unsigned getQuantity() const;
+    [[nodiscard]] unsigned getQuantity() const;
     std::string getTag();
 
 
@@ -26,6 +27,9 @@ public:
     void setitemName(std::string &itemName);
     void setQuantity(unsigned quantity);
     void setTag(std::string &tag);
+
+	// Defines how item reacts to being used
+	virtual void use(Battle &battle) = 0;
 
     // Outputs Item description on the terminal
     virtual void info() = 0;
