@@ -33,5 +33,5 @@ void Armor::setArmor(int armorValue) {
 }
 
 void Armor::info() {
-    fmt::print("ID: {0} \nName: {1} \nAnzahl: {2} \nDefense: {3} \nTag: {4}\n\n",m_id,m_itemName,m_quantity,m_armorValue,m_tag);
+    fmt::print("ID: {0} \nName: {1} \nAnzahl: {2} \nVerteidigung: {3} \nTag: {4}\n\n",m_id,m_itemName,m_quantity,m_armorValue,m_tag);
 }

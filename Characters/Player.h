@@ -6,11 +6,14 @@
 #define MODERNGAME_PLAYER_H
 #include "Character.h"
 #include "../Misc/equippedArmor.h"
+#include "../Items/Weapon.h"
+#include "../Misc/Itemlist.h"
 
 class Player : public Character{
 protected:
+	std::unique_ptr<Itemlist> m_inventory;
     std::unique_ptr<equippedArmor> m_armorSet;
-	std::vector<std::shared_ptr<Item>> m_inventory;
+	std::shared_ptr<Weapon> m_equippedWeapon;
 	int m_baseDefense;
 
 public:
@@ -19,16 +22,16 @@ public:
 
 
 	std::shared_ptr<Item> getItem(unsigned id);
-
 	void addItem(const std::shared_ptr<Item>& item);
-
 	void showInventory();
 
     void equipArmor(const std::shared_ptr<Item>& armor);
-
     void unequipArmor(const std::shared_ptr<Item>& armor);
 
 	void updateDefense();
+
+	void equipWeapon(int id);
+	void unequipWeapon(int id);
 
 	[[nodiscard]] int getBaseDefense() const;
 

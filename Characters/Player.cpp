@@ -14,6 +14,7 @@ Player::Player(const std::string &name, int maxHealth, int defense, int attack){
 	m_maxHealth = maxHealth;
 	m_health = m_maxHealth;
 	m_attack = attack;
+	m_equippedWeapon = std::make_shared<Weapon>();
 }
 
 Player::~Player() = default;
@@ -54,6 +55,8 @@ void Player::updateDefense() {
 	m_defense = m_baseDefense;
 	m_defense += m_armorSet->getArmorDefense();
 }
+
+
 
 int Player::getBaseDefense() const {
 	return m_baseDefense;
