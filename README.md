@@ -7,3 +7,4 @@
 - add consumables
 - add skills
 - add more complex enemies
+  - splitting big slime  
