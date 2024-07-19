@@ -75,7 +75,7 @@ std::shared_ptr<Armor> equippedArmor::getHelmet() {
 }
 
 std::shared_ptr<Armor> equippedArmor::getTorso() {
-    return m_helmet;
+    return m_torso;
 }
 
 std::shared_ptr<Armor> equippedArmor::getLegs() {

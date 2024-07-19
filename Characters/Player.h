@@ -17,7 +17,7 @@ protected:
 	int m_baseDefense;
 
 public:
-    explicit Player(const std::string &name,int maxHealth = 100, int defense = 0, int attack = 7);
+    explicit Player(const std::string &name,int maxHealth = 100, int defense = 1, int attack = 10);
     ~Player();
 
 

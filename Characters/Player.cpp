@@ -76,5 +76,5 @@ int Player::getBaseDefense() const {
 }
 
 void Player::info(){
-	fmt::print("Name: {0}\nLeben: {1}/{2}\nAngriff: {3}\nVerteidigung: {4}\n", m_name, m_health, m_maxHealth, m_attack, m_defense);
+	fmt::print("Name: {0}\nLeben: {1}/{2}\nAngriff: {3}\nVerteidigung: {4}\nWaffe: {5}\nHelm: {6}\nBrustpanzer: {7}\nHose: {8}\nHandschuhe {9}\n", m_name, m_health, m_maxHealth, m_attack+m_equippedWeapon->getAttackValue(), m_defense,m_equippedWeapon->getItemName(),m_armorSet->getHelmet()->getItemName(),m_armorSet->getTorso()->getItemName(),m_armorSet->getLegs()->getItemName(),m_armorSet->getGloves()->getItemName());
 }

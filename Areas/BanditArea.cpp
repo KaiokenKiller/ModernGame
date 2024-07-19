@@ -70,7 +70,7 @@ std::vector<std::shared_ptr<Enemy>>& BanditArea::generateEnemies() {
 				loot.push_back(5);
 				loot.push_back(6);
 				loot.push_back(12);
-				auto banditSwordsman = std::make_shared<Enemy>("Banditen Schwertkämpfer", 25, 3, 7, loot);
+				auto banditSwordsman = std::make_shared<Enemy>("Banditen Schwertkämpfer", 20, 3, 7, loot);
 				generatedEnemies->push_back(banditSwordsman);
 				break;
 			}

@@ -129,6 +129,11 @@ void Adventure::start() {
 		textVec.push_back(fmt::format("EIN KAMPF UM LEBEN UND TOT!"));
 		displayText(textVec);
 
+		m_player->addItem(7);
+		m_player->addItem(8);
+		m_player->addItem(9);
+		m_player->addItem(10);
+		m_player->addItem(11);
 		StarterArea burningVillage("Brennendes Dorf",5,8);
 		Battle burningVillageBattle(m_player,burningVillage.generateEnemies());
 		if (!m_player->isAlive())
