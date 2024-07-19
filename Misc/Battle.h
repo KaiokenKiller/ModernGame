@@ -24,9 +24,14 @@ public:
 	void selectMenu();
 	void selectAttack();
 	void selectInventory();
+	void selectStatus();
+	void selectInspectEnemy();
 	void enemyTurn();
 	static void dealDamage(const std::shared_ptr<Character>& character, const std::shared_ptr<Attack>& attack);
 	void endOfBattle();
+
+
+
 
 
 };

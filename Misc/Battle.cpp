@@ -43,21 +43,25 @@ bool Battle::enemiesAlive() {
 }
 
 void Battle::selectMenu() {
-	fmt::print("Spieler:\n\n{0} ({1}/{2})\n\nEnemies:\n\n",m_player->getName(), m_player->getHealth(), m_player->getMaxHealth());
+	fmt::print("Spieler:\n\n{0} ({1}/{2})\n\nGegner:\n\n",m_player->getName(), m_player->getHealth(), m_player->getMaxHealth());
 	for (const auto& enemy:m_enemies) {
 		if (enemy->isAlive())
 			fmt::print("{0} ({1}/{2})\n",enemy->getName(),enemy->getHealth(),enemy->getMaxHealth());
 	}
 
 	std::string choice = "-1";
-	while (choice != "1" && choice != "2"){
-		fmt::print("(1): Angriff\n(2): Inventar\n");
+	while (choice != "1" && choice != "2" && choice != "3" && choice != "4"){
+		fmt::print("\n(1): Angriff\n(2): Inventar\n(3): Status\n(4): Gegner inspizieren\n");
 		std::cin >> choice;
 	}
 	if (choice == "1")
 		selectAttack();
 	if (choice == "2")
 		selectInventory();
+	if (choice == "3")
+		selectStatus();
+	if (choice == "4")
+		selectInspectEnemy();
 }
 
 void Battle::selectAttack() {
@@ -144,6 +148,50 @@ void Battle::selectInventory() {
 		}
 	}
 	selectMenu();
+}
+
+void Battle::selectStatus(){
+	m_player->info();
+	std::cin.get();
+	std::cin.get();
+	selectMenu();
+}
+
+void Battle::selectInspectEnemy(){
+	if (!m_enemies.empty()) {
+		fmt::print("(0): Zurück\n(Nr) Wähle einen Gegner:\n\n");
+		int i = 1;
+		for (const auto &enemy: m_enemies) {
+			if (enemy->isAlive()) {
+				fmt::print("({0}) {1} ({2}/{3})\n", i, enemy->getName(), enemy->getHealth(), enemy->getMaxHealth());
+				i++;
+			}
+		}
+
+		std::string choice = "-1";
+
+		while (stoi(choice) > m_enemies.size() - m_deadEnemies || stoi(choice) < 0) {
+			std::cin >> choice;
+		}
+		if (stoi(choice) == 0) {
+			selectMenu();
+			return;
+		}
+
+		i = -1;
+		int j = stoi(choice);
+		while (j) {
+			i++;
+			if (m_enemies[i]->isAlive()) {
+				j--;
+			}
+		}
+
+		m_enemies[i]->info();
+		std::cin.get();
+		std::cin.get();
+		selectMenu();
+	}
 }
 
 void Battle::enemyTurn() {

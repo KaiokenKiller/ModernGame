@@ -76,5 +76,5 @@ int Player::getBaseDefense() const {
 }
 
 void Player::info(){
-	fmt::print("Name: {0}\nLeben: {1}/{2}\nAngriff: {3}\nVerteidigung: {4}\n\n", m_name, m_health, m_maxHealth, m_attack, m_defense);
+	fmt::print("Name: {0}\nLeben: {1}/{2}\nAngriff: {3}\nVerteidigung: {4}\n", m_name, m_health, m_maxHealth, m_attack, m_defense);
 }
