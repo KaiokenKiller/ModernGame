@@ -22,7 +22,7 @@ protected:
 
 public:
 
-	virtual Attack* createAttack();
+	virtual std::shared_ptr<Attack> createAttack();
 
 
 

@@ -62,7 +62,7 @@ void Battle::selectMenu() {
 
 void Battle::selectAttack() {
 	if (!m_enemies.empty()) {
-		fmt::print("(0): Zurück\nWähle einen Gegner:\n\n");
+		fmt::print("(0): Zurück\n(Nr) Wähle einen Gegner:\n\n");
 		int i = 1;
 		for (const auto& enemy: m_enemies) {
 			if (enemy->isAlive()){
@@ -106,21 +106,24 @@ void Battle::selectAttack() {
 	}
 }
 
-void Battle::selectInventory(){
+void Battle::selectInventory() {
 	std::string choice;
 	bool finished = false;
 	m_player->showInventory();
 
-	while (!finished){
-		fmt::print("(0): Zurück\nWähle einen Gegenstand(ID):\n");
+	while (!finished) {
+		fmt::print("(0): Zurück\n(ID): Wähle einen Gegenstand:\n");
 		std::cin >> choice;
 
-		if (choice == "0")
+		if (choice == "0") {
 			finished = true;
+		}
 		else {
 			std::shared_ptr<Item> temp = m_player->getItem(std::stoi(choice));
-			if (temp == nullptr)
+			if (temp == nullptr) {
 				fmt::print("Du besitz keinen solchen Gegenstand!\n");
+				std::cin.get();
+			}
 			else {
 				temp->info();
 				choice = "";
@@ -129,15 +132,18 @@ void Battle::selectInventory(){
 					std::cin >> choice;
 				}
 				if (choice == "1") {
-					temp->use(this);
-					finished = true;
+					if (temp->getTag() == "helmet" || temp->getTag() == "torso" || temp->getTag() == "legs" || temp->getTag() == "gloves") {
+						m_player->equipArmor(temp);
+					}
+					if (temp->getTag() == "weapon") {
+						m_player->equipWeapon(temp);
+						m_playerAttack = m_player->createAttack();
+					}
 				}
 			}
 		}
 	}
-}
-
-
+	selectMenu();
 }
 
 void Battle::enemyTurn() {
@@ -158,7 +164,7 @@ void Battle::enemyTurn() {
 	}
 }
 
-void Battle::dealDamage(const std::shared_ptr<Character>& character, Attack *attack) {
+void Battle::dealDamage(const std::shared_ptr<Character>& character, const std::shared_ptr<Attack>& attack) {
 	if (!attack->isTrueDamage()){
 		if (character->getDefense() >= attack->getAttack()){
 			attack->setAttack(1);

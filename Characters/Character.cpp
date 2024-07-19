@@ -4,8 +4,8 @@
 
 #include "Character.h"
 
-Attack* Character::createAttack() {
-	return new Attack(m_attack);
+std::shared_ptr<Attack> Character::createAttack() {
+	return std::make_shared<Attack>(m_attack);
 }
 
 bool Character::isAlive() const {

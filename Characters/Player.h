@@ -28,11 +28,11 @@ public:
 
     void equipArmor(const std::shared_ptr<Item>& armor);
     void unequipArmor(const std::shared_ptr<Item>& armor);
-
 	void updateDefense();
 
-	void equipWeapon(unsigned id);
-	void unequipWeapon(unsigned id);
+	void equipWeapon(const std::shared_ptr<Item>& weapon);
+	void unequipWeapon(const std::shared_ptr<Item>& weapon);
+	std::shared_ptr<Attack> createAttack() override;
 
 	[[nodiscard]] int getBaseDefense() const;
 

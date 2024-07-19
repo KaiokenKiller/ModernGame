@@ -25,14 +25,13 @@ Itemlist::Itemlist() {
 }
 
 std::shared_ptr<Item> Itemlist::getItem(unsigned int id) {
-	if (id < m_itemlist.size())
-		if (m_itemlist[id]->getQuantity() > 0)
+	if (id < m_itemlist.size() && m_itemlist[id] != nullptr && m_itemlist[id]->getQuantity() > 0)
 			return m_itemlist[id];
 	return nullptr;
 }
 
 void Itemlist::addItem(const unsigned id) {
-	if (id < m_itemlist.size() && id != 0) {
+	if (id < m_itemlist.size() && m_itemlist[id] != nullptr){
 		m_itemlist[id]->setQuantity(m_itemlist[id]->getQuantity() + 1);
 		fmt::print("Du hast ein {0} erhalten!\n", m_itemlist[id]->getItemName());
 	}
@@ -46,8 +45,11 @@ void Itemlist::removeItem(const unsigned id) {
 
 void Itemlist::showInventory() {
 	for (const auto& element:m_itemlist){
-		if (element->getQuantity()>0)
-			fmt::print("{0:03}. {1} [{2}] {3}\n",element->getId(),element->getItemName(), element->getTag(),element->getQuantity());
+		if (element != nullptr) {
+			if (element->getQuantity() > 0)
+				fmt::print("{0:03}. {1} [{2}] {3}\n", element->getId(), element->getItemName(), element->getTag(),
+						   element->getQuantity());
+		}
 	}
 	fmt::print("\n");
 }

@@ -13,8 +13,8 @@ Adventure::Adventure(){
 	std::cin.get();
 
 	m_player = std::make_shared<Player>(name);
-	start();
-	//test();
+	//start();
+	test();
 }
 
 Adventure::~Adventure() = default;
@@ -49,6 +49,9 @@ void Adventure::test() {
 	Battle(m_player,temp);
 	*/
 
+	m_player->addItem(1);
+	m_player->addItem(5);
+
 	StarterArea grasslands("Grasland");
 	Battle temp(m_player,grasslands.generateEnemies());
 }
@@ -70,18 +73,19 @@ void Adventure::start() {
 	}
 	if(choice == "1"){
 		textVec.push_back(fmt::format("Auf dem Weg zur Dorfgrenze läuft dir ein kleines Mädchen über den Weg."));
-		textVec.push_back(fmt::format("\"Mein Herr das Grasland ist zu gefährlich um zur Höhle zu kommen."));
-		textVec.push_back(fmt::format("Nehmt lieber den Pfad durch den Wald dort habe ich noch nie Monster gesehen.\""));
+		textVec.push_back(fmt::format("\"Mein Herr ihr dürft nicht durch das Grasland, es ist viel zu gefährlich."));
+		textVec.push_back(fmt::format("Nehmt lieber den Pfad durch den Wald dort habe ich noch nie ein Monster gesehen.\""));
 		displayText(textVec);
 
 		fmt::print("Welchen Weg wählst du?\n1.Das Grasland ist offener dort weiß ich genau was mich erwartet.\n2.Ein sicherer Weg durch den Wald hört sich verlockend an.\n");
 
+		choice.clear();
 		while (choice != "1" && choice != "2"){
 			std::cin >> choice;
 		}
 		if (choice == "1"){
 			textVec.push_back(fmt::format("Auf dem Weg durchs Grasland musst du dich durch hohe Gräser schlagen"));
-			textVec.push_back(fmt::format("Du hörts ein rascheln aus dem Gras und eine Gruppe Monster springt herraus"));
+			textVec.push_back(fmt::format("Du hörst ein rascheln aus dem Gras und eine Gruppe Monster springt herraus"));
 			displayText(textVec);
 
 			StarterArea grassland("Grasland",2,3);
@@ -89,7 +93,7 @@ void Adventure::start() {
 			if (!m_player->isAlive())
 				return;
 
-			textVec.push_back(fmt::format("Nachdem du die Monster mit äußerster Leichtigkeit besiegen konntest gönnst du dir eine Verschnaufspause"));
+			textVec.push_back(fmt::format("Nachdem du die Monster mit äußerster Leichtigkeit besiegen konntest gönnst du dir eine Verschnaufspause."));
 			textVec.push_back(fmt::format("Leider waren das nicht die einzigen Monster auf dem Weg."));
 			textVec.push_back(fmt::format("Du siehst eine weitere Gruppe und sprintest ins Gefecht"));
 			displayText(textVec);

@@ -4,12 +4,10 @@
 
 #include "Player.h"
 
-#include <utility>
-
 Player::Player(const std::string &name, int maxHealth, int defense, int attack){
     m_name = name;
 	m_armorSet = std::make_unique<equippedArmor>();
-	m_baseDefense = 0;
+	m_baseDefense = defense;
 	m_defense = m_baseDefense;
 	m_maxHealth = maxHealth;
 	m_health = m_maxHealth;
@@ -38,7 +36,12 @@ void Player::showInventory() {
 }
 
 void Player::equipArmor(const std::shared_ptr<Item>& armor) {
-    if (m_armorSet->equip(std::dynamic_pointer_cast<Armor>(armor)))
+	auto temp = std::dynamic_pointer_cast<Armor>(armor);
+	if (temp->getId() == m_armorSet->getHelmet()->getId() || temp->getId() == m_armorSet->getTorso()->getId() || temp->getId() == m_armorSet->getLegs()->getId() || temp->getId() == m_armorSet->getGloves()->getId()){
+		unequipArmor(armor);
+		return;
+	}
+	if (m_armorSet->equip(temp))
 		updateDefense();
 }
 
@@ -52,7 +55,21 @@ void Player::updateDefense() {
 	m_defense += m_armorSet->getArmorDefense();
 }
 
+void Player::equipWeapon(const std::shared_ptr<Item> &weapon) {
+	if (m_equippedWeapon == weapon){
+		unequipWeapon(weapon);
+		return;
+	}
+	m_equippedWeapon = std::dynamic_pointer_cast<Weapon>(weapon);
+}
 
+void Player::unequipWeapon(const std::shared_ptr<Item> &weapon) {
+	m_equippedWeapon = std::make_shared<Weapon>();
+}
+
+std::shared_ptr<Attack> Player::createAttack() {
+	return std::make_shared<Attack>(m_attack+m_equippedWeapon->getAttackValue(),m_equippedWeapon->isTrueDamage());
+}
 
 int Player::getBaseDefense() const {
 	return m_baseDefense;

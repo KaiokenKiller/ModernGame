@@ -6,13 +6,6 @@
 
 #include <utility>
 
-Armor::Armor(){
-	m_id = 0;
-	m_itemName = "Leer";
-	m_quantity = 0;
-	m_tag = "Leer";
-	m_armorValue = 0;
-}
 
 Armor::Armor(unsigned int id,const std::string &itemName, unsigned int quantity, std::string tag, int armorValue) {
     m_id = id;
@@ -30,10 +23,6 @@ int Armor::getArmorValue() const {
 
 void Armor::setArmor(int armorValue) {
     m_armorValue = armorValue;
-}
-
-void Armor::use(Battle &battle) {
-	battle.m_player->equipArmor(m_id);
 }
 
 void Armor::info() {

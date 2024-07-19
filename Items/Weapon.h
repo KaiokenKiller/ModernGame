@@ -12,16 +12,15 @@ protected:
 	int m_attackValue;
 	bool m_trueDamage;
 public:
-	Weapon(unsigned id = 0,const std::string &itemName = "empty", unsigned quantity = 0, const std::string &tag = "", int attackValue = 0, bool trueDamage = false);
+	explicit Weapon(unsigned id = 0,const std::string &itemName = "Fäuste", unsigned quantity = 0, const std::string &tag = "weapon", int attackValue = 0, bool trueDamage = false);
 	void modifyAttack(Attack &attack);
 
-	int getAttackValue() const;
-	bool isTrueDamage() const;
+	[[nodiscard]] int getAttackValue() const;
+	[[nodiscard]] bool isTrueDamage() const;
 
 	void setAttackValue(int attack);
 	void setTrueDamage(bool trueDamage);
 
-	void use(Battle &battle) override;
 	void info() override;
 
 

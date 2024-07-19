@@ -5,6 +5,7 @@
 #include "Weapon.h"
 
 Weapon::Weapon(unsigned int id, const std::string &itemName, unsigned int quantity, const std::string &tag, int attackValue, bool trueDamage){
+	m_id = id;
 	m_itemName = itemName;
 	m_quantity = quantity;
 	m_tag = tag;
@@ -32,10 +33,6 @@ void Weapon::setAttackValue(int attack){
 
 void Weapon::setTrueDamage(bool trueDamage) {
 	m_trueDamage = trueDamage;
-}
-
-void Weapon::use(Battle &battle) {
-	battle.m_player->equipWeapon(m_id);
 }
 
 void Weapon::info() {
