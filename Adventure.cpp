@@ -13,8 +13,8 @@ Adventure::Adventure(){
 	std::cin.get();
 
 	m_player = std::make_shared<Player>(name);
-	//start();
-	test();
+	start();
+	//test();
 }
 
 Adventure::~Adventure() = default;
