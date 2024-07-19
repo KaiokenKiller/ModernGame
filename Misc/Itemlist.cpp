@@ -33,7 +33,7 @@ std::shared_ptr<Item> Itemlist::getItem(unsigned int id) {
 void Itemlist::addItem(const unsigned id) {
 	if (id < m_itemlist.size() && m_itemlist[id] != nullptr){
 		m_itemlist[id]->setQuantity(m_itemlist[id]->getQuantity() + 1);
-		fmt::print("Du hast ein {0} erhalten!\n", m_itemlist[id]->getItemName());
+		fmt::print("Du hast ein \"{0}\" erhalten!\n", m_itemlist[id]->getItemName());
 	}
 }
 

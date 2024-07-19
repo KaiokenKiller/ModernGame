@@ -109,7 +109,8 @@ void Adventure::start() {
 			textVec.push_back(fmt::format("Noch bevor du deine Schlüsse daraus ziehen kannst greift dich eine Gruppe Banditen an, welche sich zuvor versteckt hatte."));
 			displayText(textVec);
 
-			BanditArea banditBattle ("Wald vor dem Dorf",3,5);
+			BanditArea banditArea ("Wald vor dem Dorf",3,4);
+			Battle banditBattle(m_player,banditArea.generateEnemies());
 			if (!m_player->isAlive())
 				return;
 
