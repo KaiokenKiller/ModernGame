@@ -20,7 +20,12 @@ Itemlist::Itemlist() {
 	m_itemlist.emplace_back(std::make_shared<Armor>(10,"Farmerhandschuhe",0,"gloves",1));
 	m_itemlist.emplace_back(std::make_shared<Weapon>(11,"Eisenhacke",0,"weapon",4,false));
 	m_itemlist.emplace_back(std::make_shared<Weapon>(12,"Dolch",0,"weapon",4,false));
-	m_itemlist.emplace_back(std::make_shared<Weapon>(13,"Bogen",0,"weapon",5,false));
+	m_itemlist.emplace_back(std::make_shared<Weapon>(13,"Bogen",0,"weapon",6,false));
+	m_itemlist.emplace_back(std::make_shared<Weapon>(14,"Keule des Trolls",0,"weapon",10,false));
+	m_itemlist.emplace_back(std::make_shared<Weapon>(15,"Stab des Nekromanten",0,"weapon",9,false));
+	m_itemlist.emplace_back(std::make_shared<Armor>(16,"Robe des Nekromanten",0,"torso",4));
+	m_itemlist.emplace_back(std::make_shared<Armor>(17,"Ring des Nekromanten",0,"gloves",3));
+	m_itemlist.emplace_back(std::make_shared<Armor>(18,"Kettenhemd",0,"torso",3));
 
 }
 

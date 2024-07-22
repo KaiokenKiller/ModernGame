@@ -1,6 +1,6 @@
 # To-do-list
 ## Have to do
-- finish story of chapter I
+- do further testing
 
 ## Could do if there is time
 - adjust spawn rates of enemies

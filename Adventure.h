@@ -11,6 +11,9 @@
 #include "Misc/Battle.h"
 #include "Areas/StarterArea.h"
 #include "Areas/BanditArea.h"
+#include "Areas/CaveArea.h"
+#include "Bosses/CaveTroll.h"
+#include "Bosses/Necromancer.h"
 #include <chrono>
 #include <thread>
 

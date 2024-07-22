@@ -35,7 +35,13 @@ add_executable(ModernGame main.cpp
         Misc/Itemlist.cpp
         Misc/Itemlist.h
         Items/Weapon.cpp
-        Items/Weapon.h)
+        Items/Weapon.h
+        Areas/CaveArea.cpp
+        Areas/CaveArea.h
+        Bosses/CaveTroll.cpp
+        Bosses/CaveTroll.h
+        Bosses/Necromancer.cpp
+        Bosses/Necromancer.h)
 
 target_link_libraries(
         ModernGame PRIVATE fmt::fmt
