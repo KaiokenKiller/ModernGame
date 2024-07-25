@@ -16,9 +16,6 @@ Player::Player(const std::string &name, int maxHealth, int defense, int attack){
 	m_inventory = std::make_unique<Itemlist>();
 }
 
-Player::~Player() = default;
-
-
 std::shared_ptr<Item> Player::getItem(unsigned id){
 	return m_inventory->getItem(id);
 }
@@ -67,7 +64,7 @@ void Player::unequipWeapon(const std::shared_ptr<Item> &weapon) {
 	m_equippedWeapon = std::make_shared<Weapon>();
 }
 
-std::shared_ptr<Attack> Player::createAttack() {
+std::shared_ptr<Attack> Player::createAttack() const{
 	return std::make_shared<Attack>(m_attack+m_equippedWeapon->getAttackValue(),m_equippedWeapon->isTrueDamage());
 }
 

@@ -4,51 +4,59 @@
 
 #include "equippedArmor.h"
 
+const std::shared_ptr<Armor> equippedArmor::m_emptyHelmet = std::make_shared<Armor>(0,"Leer",0,Tag::helmet,0);
+const std::shared_ptr<Armor> equippedArmor::m_emptyTorso = std::make_shared<Armor>(0,"Leer",0,Tag::helmet,0);
+const std::shared_ptr<Armor> equippedArmor::m_emptyLegs = std::make_shared<Armor>(0,"Leer",0,Tag::helmet,0);
+const std::shared_ptr<Armor> equippedArmor::m_emptyGloves = std::make_shared<Armor>(0,"Leer",0,Tag::helmet,0);
+
 equippedArmor::equippedArmor(){
-    m_helmet = std::make_shared<Armor>(0,"Leer",0,"helmet",0);
-    m_torso = std::make_shared<Armor>(0,"Leer",0,"torso",0);
-    m_legs = std::make_shared<Armor>(0,"Leer",0,"legs",0);
-    m_gloves = std::make_shared<Armor>(0,"Leer",0,"gloves",0);
+    m_helmet = m_emptyHelmet;
+    m_torso = m_emptyTorso;
+    m_legs = m_emptyLegs;
+    m_gloves = m_emptyGloves;
 }
-equippedArmor::~equippedArmor() = default;
 
 bool equippedArmor::equip(const std::shared_ptr<Armor>& armor){
-	if (armor->getTag() == "helmet"){
-		m_helmet = armor;
-		return true;
+	switch (armor->getTag()) {
+		case Tag::helmet: {
+			m_helmet = armor;
+			return true;
+		}
+		case Tag::torso: {
+			m_torso = armor;
+			return true;
+		}
+		case Tag::legs: {
+			m_legs = armor;
+			return true;
+		}
+		case Tag::gloves: {
+			m_gloves = armor;
+			return true;
+		}
+		default: {
+			fmt::print("{} ist kein Rüstungsteil.\n", armor->getItemName());
+			return false;
+		}
 	}
-	if (armor->getTag() == "torso"){
-		m_torso = armor;
-		return true;
-	}
-	if (armor->getTag() == "legs"){
-		m_legs = armor;
-		return true;
-	}
-	if (armor->getTag() == "gloves"){
-		m_gloves = armor;
-		return true;
-	}
-	fmt::print("{} ist kein Rüstungsteil.\n",armor->getItemName());
-	return false;
 }
 
 
 bool equippedArmor::unequip(const std::shared_ptr<Armor>& armor) {
 	if (armor == m_helmet){
-		m_helmet = std::make_shared<Armor>(0,"Leer",0,"helmet",0);
+		m_helmet = m_emptyHelmet;
 		return true;
 	}
 	if (armor == m_torso){
-		m_torso = std::make_shared<Armor>(0,"Leer",0,"torso",0);
+		m_torso = m_emptyTorso;
 		return true;
 	}
 	if (armor == m_legs){
-		m_legs = std::make_shared<Armor>(0,"Leer",0,"legs",0);
+		m_legs = m_emptyLegs;
 		return true;
 	}
 	if (armor == m_gloves){
-		m_gloves = std::make_shared<Armor>(0,"Leer",0,"gloves",0);
+		m_gloves = m_emptyGloves;
 		return true;
 	}
 	fmt::print("{} ist nicht ausgerüstet.\n",armor->getItemName());

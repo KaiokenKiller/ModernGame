@@ -5,15 +5,6 @@
 #ifndef MODERNGAME_ADVENTURE_H
 #define MODERNGAME_ADVENTURE_H
 #include "Characters/Player.h"
-#include "Characters/Enemy.h"
-#include "Items/Item.h"
-#include "Items/Armor.h"
-#include "Misc/Battle.h"
-#include "Areas/StarterArea.h"
-#include "Areas/BanditArea.h"
-#include "Areas/CaveArea.h"
-#include "Bosses/CaveTroll.h"
-#include "Bosses/Necromancer.h"
 #include <chrono>
 #include <thread>
 
@@ -26,7 +17,7 @@ private:
 public:
     Adventure();
 
-    ~Adventure();
+    ~Adventure() = default;
 
     void start();
     void test();

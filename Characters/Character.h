@@ -22,10 +22,7 @@ protected:
 
 public:
 
-	virtual std::shared_ptr<Attack> createAttack();
-
-
-
+	[[nodiscard]] virtual std::shared_ptr<Attack> createAttack() const;
 
 
 	[[nodiscard]] bool isAlive() const;

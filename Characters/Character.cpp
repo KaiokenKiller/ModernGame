@@ -4,7 +4,7 @@
 
 #include "Character.h"
 
-std::shared_ptr<Attack> Character::createAttack() {
+std::shared_ptr<Attack> Character::createAttack() const{
 	return std::make_shared<Attack>(m_attack);
 }
 

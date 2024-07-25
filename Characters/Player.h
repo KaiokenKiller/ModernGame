@@ -18,7 +18,7 @@ protected:
 
 public:
     explicit Player(const std::string &name,int maxHealth = 100, int defense = 1, int attack = 10);
-    ~Player();
+    ~Player() = default;
 
 
 	std::shared_ptr<Item> getItem(unsigned id);
@@ -32,7 +32,7 @@ public:
 
 	void equipWeapon(const std::shared_ptr<Item>& weapon);
 	void unequipWeapon(const std::shared_ptr<Item>& weapon);
-	std::shared_ptr<Attack> createAttack() override;
+	[[nodiscard]] std::shared_ptr<Attack> createAttack() const override;
 
 	[[nodiscard]] int getBaseDefense() const;
 

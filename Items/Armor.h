@@ -11,12 +11,11 @@ protected:
 
     int m_armorValue;
 
-
 public:
 	// valid Armor tags are helmet, torso, legs, gloves
-    Armor(unsigned id,const std::string &itemName, unsigned quantity, std::string tag, int armorValue);
+    Armor(unsigned id,const std::string &itemName, unsigned quantity, Tag tag, int armorValue);
 
-    ~Armor();
+    ~Armor() = default;
     [[nodiscard]] int getArmorValue() const;
     void setArmor(int armorValue);
 

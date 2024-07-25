@@ -136,10 +136,10 @@ void Battle::selectInventory() {
 					std::cin >> choice;
 				}
 				if (choice == "1") {
-					if (temp->getTag() == "helmet" || temp->getTag() == "torso" || temp->getTag() == "legs" || temp->getTag() == "gloves") {
+					if (temp->getTag() == Tag::helmet || temp->getTag() == Tag::torso || temp->getTag() == Tag::legs || temp->getTag() == Tag::gloves) {
 						m_player->equipArmor(temp);
 					}
-					if (temp->getTag() == "weapon") {
+					if (temp->getTag() == Tag::weapon) {
 						m_player->equipWeapon(temp);
 						m_playerAttack = m_player->createAttack();
 					}

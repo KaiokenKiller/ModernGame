@@ -12,7 +12,7 @@ protected:
 	int m_attackValue;
 	bool m_trueDamage;
 public:
-	explicit Weapon(unsigned id = 0,const std::string &itemName = "Fäuste", unsigned quantity = 0, const std::string &tag = "weapon", int attackValue = 0, bool trueDamage = false);
+	explicit Weapon(unsigned id = 0,const std::string &itemName = "Fäuste", unsigned quantity = 0, Tag tag = Tag::weapon, int attackValue = 0, bool trueDamage = false);
 	void modifyAttack(Attack &attack);
 
 	[[nodiscard]] int getAttackValue() const;

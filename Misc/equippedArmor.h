@@ -14,10 +14,14 @@ protected:
     std::shared_ptr<Armor> m_legs;
     std::shared_ptr<Armor> m_gloves;
 
+	static const std::shared_ptr<Armor> m_emptyHelmet;
+	static const std::shared_ptr<Armor> m_emptyTorso;
+	static const std::shared_ptr<Armor> m_emptyLegs;
+	static const std::shared_ptr<Armor> m_emptyGloves;
 
 public:
     equippedArmor();
-    ~equippedArmor();
+    ~equippedArmor() = default;
 
     bool equip(const std::shared_ptr<Armor>& armor);
 

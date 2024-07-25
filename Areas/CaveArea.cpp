@@ -4,11 +4,8 @@
 
 #include "CaveArea.h"
 
-CaveArea::CaveArea(const std::string &areaname, unsigned minEnemyCount, unsigned maxEnemyCount){
-	m_areaname = areaname;
+CaveArea::CaveArea(const std::string &areaname, unsigned minEnemyCount, unsigned maxEnemyCount): Area(areaname,minEnemyCount,maxEnemyCount){
 	m_enemyTypeCount = 4;
-	m_minEnemyCount = minEnemyCount;
-	m_maxEnemyCount = maxEnemyCount;
 }
 
 std::vector<std::shared_ptr<Enemy>> &CaveArea::generateEnemies() {
@@ -25,71 +22,34 @@ std::vector<std::shared_ptr<Enemy>> &CaveArea::generateEnemies() {
 
 		switch (rngEnemyType) {
 			case 0: {
-				std::vector<unsigned> loot;
-				loot.push_back(0);
-				loot.push_back(0);
-				loot.push_back(0);
-				loot.push_back(1);
-				loot.push_back(1);
-				loot.push_back(2);
-				loot.push_back(3);
-				loot.push_back(6);
+				std::vector<unsigned> loot{0,0,0,1,1,2,3,6};
 				auto skeleton = std::make_shared<Enemy>("Skelett", 20, 5, 5,loot);
 				generatedEnemies->emplace_back(skeleton);
 				break;
 			}
 			case 1: {
-				std::vector<unsigned> loot;
-				loot.push_back(0);
-				loot.push_back(0);
-				loot.push_back(0);
-				loot.push_back(3);
-				loot.push_back(4);
-				loot.push_back(5);
-				loot.push_back(6);
+				std::vector<unsigned> loot{0,0,0,3,4,5,6};
 
 				auto goblin = std::make_shared<Enemy>("Goblin", 25, 3, 7,loot);
 				generatedEnemies->emplace_back(goblin);
 				break;
 			}
 			case 2: {
-				std::vector<unsigned> loot;
-				loot.push_back(0);
-				loot.push_back(0);
-				loot.push_back(2);
-				loot.push_back(4);
-				loot.push_back(12);
-				loot.push_back(18);
+				std::vector<unsigned> loot{0,0,2,4,12,18};
 
 				auto giantSpider = std::make_shared<Enemy>("Riesen Spinne", 30, 2, 10,loot);
 				generatedEnemies->emplace_back(giantSpider);
 				break;
 			}
 			case 3: {
-				std::vector<unsigned> loot;
-				loot.push_back(0);
-				loot.push_back(0);
-				loot.push_back(2);
-				loot.push_back(3);
-				loot.push_back(4);
-				loot.push_back(5);
-				loot.push_back(6);
-				loot.push_back(13);
-				loot.push_back(18);
+				std::vector<unsigned> loot{0,0,2,3,4,5,6,13,18};
 
 				auto skeletonWarrior = std::make_shared<Enemy>("Skelett Krieger", 35, 5, 7,loot);
 				generatedEnemies->emplace_back(skeletonWarrior);
 				break;
 			}
 			default: {
-				std::vector<unsigned> loot;
-				loot.push_back(0);
-				loot.push_back(0);
-				loot.push_back(0);
-				loot.push_back(3);
-				loot.push_back(4);
-				loot.push_back(5);
-				loot.push_back(6);
+				std::vector<unsigned> loot{0,0,0,3,4,5,6};
 
 				auto goblin = std::make_shared<Enemy>("Goblin", 25, 3, 7,loot);
 				generatedEnemies->emplace_back(goblin);
