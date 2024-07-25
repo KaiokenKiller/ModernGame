@@ -113,9 +113,9 @@ void Battle::selectAttack() {
 void Battle::selectInventory() {
 	std::string choice;
 	bool finished = false;
-	m_player->showInventory();
 
 	while (!finished) {
+		m_player->showInventory();
 		fmt::print("(0): Zurück\n(ID): Wähle einen Gegenstand:\n");
 		std::cin >> choice;
 

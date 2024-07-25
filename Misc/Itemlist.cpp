@@ -52,7 +52,7 @@ void Itemlist::showInventory() {
 	for (const auto& element:m_itemlist){
 		if (element != nullptr) {
 			if (element->getQuantity() > 0)
-				fmt::print("{0:03}. {1} [{2}] {3}\n", element->getId(), element->getItemName(), element->getTagString(),
+				fmt::print("{0:03}. {1} [{2}] {3}x\n", element->getId(), element->getItemName(), element->getTagString(),
 						   element->getQuantity());
 		}
 	}

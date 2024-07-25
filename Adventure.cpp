@@ -187,6 +187,7 @@ void Adventure::start() {
 		textVec.push_back(fmt::format("Beim genaueren hinsehen bemerkst du, dass es sich nicht nur um ein Skelett sondern um viele handelt, welche rampunierte Ausrüstung von Abenteurern bei sich tragen."));
 		textVec.push_back(fmt::format("Du kriegst ein ungutes Gefühl und hörst wie sich etwas großes in deine Richtung bewegt."));
 		textVec.push_back(fmt::format("Zum fliehen bleibt dir wohl keine Zeit mehr also bereitest du dich auf einen Kampf vor."));
+		displayText(textVec);
 
 		auto caveTroll = CaveTroll::generateEnemies();
 		Battle caveTrollBattle(m_player,caveTroll);
