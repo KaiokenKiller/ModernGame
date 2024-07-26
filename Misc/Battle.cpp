@@ -65,48 +65,29 @@ void Battle::selectMenu() {
 }
 
 void Battle::selectAttack() {
-	if (!m_enemies.empty()) {
-		fmt::print("(0): Zurück\n(Nr) Wähle einen Gegner:\n\n");
-		int i = 1;
-		for (const auto& enemy: m_enemies) {
-			if (enemy->isAlive()){
-				fmt::print("({0}) {1} ({2}/{3})\n", i, enemy->getName(), enemy->getHealth(), enemy->getMaxHealth());
-				i++;
-				}
-		}
-
-		std::string choice = "-1";
-
-		while (stoi(choice) > m_enemies.size() - m_deadEnemies || stoi(choice) < 0) {
-			std::cin >> choice;
-		}
-		if (stoi(choice) == 0) {
+	int i = enemySelection();
+	switch (i) {
+		case RETURN: {
 			selectMenu();
 			return;
 		}
-
-		i = -1;
-		int j = stoi(choice);
-		while(j){
-			i++;
-			if (m_enemies[i]->isAlive()){
-				j--;
+		case ENEMIES_EMPTY: {
+			return;
+		}
+		default: {
+			dealDamage(m_enemies[i], m_playerAttack);
+			if (!m_enemies[i]->isAlive())
+				fmt::print("{0} wurde besiegt!", m_enemies[i]->getName());
+			std::cin.get();
+			std::cin.get();
+			if (enemiesAlive()) {
+				//Reset Attack for next Turn and pass turn
+				m_playerAttack = m_player->createAttack();
+				enemyTurn();
+			} else {
+				endOfBattle();
 			}
 		}
-
-		dealDamage(m_enemies[i], m_playerAttack);
-		if (!m_enemies[i]->isAlive())
-			fmt::print("{0} wurde besiegt!",m_enemies[i]->getName());
-		std::cin.get();
-		std::cin.get();
-	}
-	if (enemiesAlive()) {
-		//Reset Attack for next Turn and pass turn
-		m_playerAttack = m_player->createAttack();
-		enemyTurn();
-	}
-	else {
-		endOfBattle();
 	}
 }
 
@@ -121,14 +102,12 @@ void Battle::selectInventory() {
 
 		if (choice == "0") {
 			finished = true;
-		}
-		else {
+		} else {
 			std::shared_ptr<Item> temp = m_player->getItem(std::stoi(choice));
 			if (temp == nullptr) {
 				fmt::print("Du besitz keinen solchen Gegenstand!\n");
 				std::cin.get();
-			}
-			else {
+			} else {
 				temp->info();
 				choice = "";
 				while (choice != "0" && choice != "1") {
@@ -136,12 +115,38 @@ void Battle::selectInventory() {
 					std::cin >> choice;
 				}
 				if (choice == "1") {
-					if (temp->getTag() == Tag::helmet || temp->getTag() == Tag::torso || temp->getTag() == Tag::legs || temp->getTag() == Tag::gloves) {
+					if (temp->getTag() == Tag::helmet || temp->getTag() == Tag::torso || temp->getTag() == Tag::legs ||
+						temp->getTag() == Tag::gloves) {
 						m_player->equipArmor(temp);
 					}
 					if (temp->getTag() == Tag::weapon) {
 						m_player->equipWeapon(temp);
 						m_playerAttack = m_player->createAttack();
+					}
+					if (temp->getTag() == Tag::healing) {
+						m_player->setHealth(
+								std::dynamic_pointer_cast<Consumeable>(temp)->healing(m_player->getHealth()));
+						m_player->removeItem(temp->getId());
+					}
+					if (temp->getTag() == Tag::throwable) {
+						int i = enemySelection();
+						switch (i) {
+							case RETURN: {
+								break;
+							}
+							case ENEMIES_EMPTY: {
+								return;
+							}
+							default: {
+								dealDamage(m_enemies[i],std::dynamic_pointer_cast<Consumeable>(temp)->throwable());
+								m_player->removeItem(temp->getId());
+								break;
+							}
+						}
+					}
+					if (temp->getTag() == Tag::buffDamage){
+						m_playerAttack = std::dynamic_pointer_cast<Consumeable>(temp)->buffDamage(m_playerAttack);
+						m_player->removeItem(temp->getId());
 					}
 				}
 			}
@@ -149,7 +154,6 @@ void Battle::selectInventory() {
 	}
 	selectMenu();
 }
-
 void Battle::selectStatus(){
 	m_player->info();
 	std::cin.get();
@@ -158,6 +162,25 @@ void Battle::selectStatus(){
 }
 
 void Battle::selectInspectEnemy(){
+	int i = enemySelection();
+	switch (i) {
+		case RETURN: {
+			selectMenu();
+			return;
+		}
+		case ENEMIES_EMPTY: {
+			return;
+		}
+		default: {
+			m_enemies[i]->info();
+			std::cin.get();
+			std::cin.get();
+			selectMenu();
+		}
+	}
+}
+
+int Battle::enemySelection() {
 	if (!m_enemies.empty()) {
 		fmt::print("(0): Zurück\n(Nr) Wähle einen Gegner:\n\n");
 		int i = 1;
@@ -174,8 +197,7 @@ void Battle::selectInspectEnemy(){
 			std::cin >> choice;
 		}
 		if (stoi(choice) == 0) {
-			selectMenu();
-			return;
+			return RETURN;
 		}
 
 		i = -1;
@@ -186,12 +208,9 @@ void Battle::selectInspectEnemy(){
 				j--;
 			}
 		}
-
-		m_enemies[i]->info();
-		std::cin.get();
-		std::cin.get();
-		selectMenu();
+		return i;
 	}
+	return ENEMIES_EMPTY;
 }
 
 void Battle::enemyTurn() {

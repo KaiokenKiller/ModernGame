@@ -41,7 +41,10 @@ add_executable(ModernGame main.cpp
         Bosses/CaveTroll.cpp
         Bosses/CaveTroll.h
         Bosses/Necromancer.cpp
-        Bosses/Necromancer.h)
+        Bosses/Necromancer.h
+        Items/Consumeable.cpp
+        Items/Consumeable.h
+)
 
 target_link_libraries(
         ModernGame PRIVATE fmt::fmt

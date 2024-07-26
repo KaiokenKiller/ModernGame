@@ -56,6 +56,9 @@ void Adventure::test() {
 
 	m_player->addItem(1);
 	m_player->addItem(5);
+	m_player->addItem(19);
+	m_player->addItem(20);
+	m_player->addItem(21);
 
 	StarterArea grasslands("Grasland");
 	Battle temp(m_player,grasslands.generateEnemies());
@@ -114,7 +117,7 @@ void Adventure::start() {
 			textVec.push_back(fmt::format("Noch bevor du deine Schlüsse daraus ziehen kannst greift dich eine Gruppe Banditen an, welche sich zuvor versteckt hatte."));
 			displayText(textVec);
 
-			BanditArea banditArea ("Wald vor dem Dorf",3,4);
+			BanditArea banditArea ("Wald vor dem Dorf",3,3);
 			Battle banditBattle(m_player,banditArea.generateEnemies());
 			if (!m_player->isAlive())
 				return;
@@ -155,8 +158,8 @@ void Adventure::start() {
 	textVec.push_back(fmt::format("Du bereitest dich auf das schlimmste vor und machst dich kampfbereit."));
 	displayText(textVec);
 
-	CaveArea caveArea("Höhle",2,4);
-	Battle caveBattle1(m_player,caveArea.generateEnemies());
+	CaveArea caveArea1("Höhle",2,3);
+	Battle caveBattle1(m_player,caveArea1.generateEnemies());
 	if (!m_player->isAlive())
 		return;
 
@@ -165,15 +168,16 @@ void Adventure::start() {
 	textVec.push_back(fmt::format("Eine weitere Gruppe Monster hat dich bereits umzingelt."));
 	displayText(textVec);
 
-	Battle caveBattle2(m_player,caveArea.generateEnemies());
+	CaveArea caveArea2("Höhle",3,4);
+	Battle caveBattle2(m_player,caveArea2.generateEnemies());
 	if (!m_player->isAlive())
 		return;
 
 	textVec.push_back(fmt::format("Du bemerkst dass sich der Tunnel hier in 2 weitere Spaltet"));
 	textVec.push_back(fmt::format("Einer der beiden Tunnel kommt dir größer vor, als hätte sich etwas großes durch ihn hindurch gezwängt"));
 	textVec.push_back(fmt::format("Der andere Tunnel hingegen sieht so aus wie der aus dem du gekommen bist, jedoch durchdringt dich ein mulmiges Gefühl wenn du länger hineinstarrst."));
-	textVec.push_back(fmt::format("Welchen Tunnel möchtest du betreten?\n1. Den großen Tunnel\n2. Den \"normalen\" Tunnel\n"));
 	displayText(textVec);
+	fmt::print("Welchen Tunnel möchtest du betreten?\n1. Den großen Tunnel\n2. Den \"normalen\" Tunnel\n");
 
 	choice.clear();
 	while (choice != "1" && choice != "2"){

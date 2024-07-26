@@ -36,7 +36,7 @@ std::vector<std::shared_ptr<Enemy>>& StarterArea::generateEnemies() {
 				break;
 			}
 			case 2: {
-				std::vector<unsigned> loot{0,0,0,3,4,5,6};
+				std::vector<unsigned> loot{0,0,0,0,3,4,5,6,19,20};
 
 				auto goblin = std::make_shared<Enemy>("Goblin", 25, 3, 7,loot);
 				generatedEnemies->emplace_back(goblin);

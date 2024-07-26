@@ -9,10 +9,10 @@ std::vector<std::shared_ptr<Enemy>> &Necromancer::generateEnemies() {
 
 	std::vector<unsigned> loot1{15,16,17};
 
-	auto necromancer = std::make_shared<Enemy>("Nekromant", 45, 5, 13,loot1);
+	auto necromancer = std::make_shared<Enemy>("Nekromant", 50, 5, 20,loot1);
 	generatedEnemies->emplace_back(necromancer);
 
-	std::vector<unsigned> loot2{0,0,2,3,4,5,6,13,18};
+	std::vector<unsigned> loot2{0,0,2,3,4,5,6,13,18,19,21};
 
 	auto skeletonWarrior = std::make_shared<Enemy>("Skelett Krieger", 35, 5, 7,loot2);
 	auto skeletonWarrior2 = std::make_shared<Enemy>("Skelett Krieger", 35, 5, 7,loot2);

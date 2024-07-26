@@ -9,7 +9,7 @@ Item::Item(unsigned int id, const std::string &itemName, unsigned int quantity, 
 	m_itemName = itemName;
 	m_quantity = quantity;
 	m_tag = tag;
-	m_tagMap = {{Tag::helmet , "helmet"},{Tag::torso,"torso"},{Tag::legs,"legs"},{Tag::gloves,"gloves"},{Tag::weapon,"weapon"}};
+	m_tagMap = {{Tag::helmet , "helmet"},{Tag::torso,"torso"},{Tag::legs,"legs"},{Tag::gloves,"gloves"},{Tag::weapon,"weapon"},{Tag::healing,"healing"},{Tag::throwable,"throwable"},{Tag::buffDamage,"buffDamage"}};
 }
 
 unsigned int Item::getId() const {

@@ -26,6 +26,9 @@ Itemlist::Itemlist() {
 	m_itemlist.emplace_back(std::make_shared<Armor>(16,"Robe des Nekromanten",0,Tag::torso,4));
 	m_itemlist.emplace_back(std::make_shared<Armor>(17,"Ring des Nekromanten",0,Tag::gloves,3));
 	m_itemlist.emplace_back(std::make_shared<Armor>(18,"Kettenhemd",0,Tag::torso,3));
+	m_itemlist.emplace_back(std::make_shared<Consumeable>(19,"Heiltrank",0,Tag::healing,20,1));
+	m_itemlist.emplace_back(std::make_shared<Consumeable>(20,"Stärketrank",0,Tag::buffDamage,0,1.5));
+	m_itemlist.emplace_back(std::make_shared<Consumeable>(21,"Bombe",0,Tag::throwable,10,1));
 
 }
 

@@ -7,7 +7,8 @@
 #include "iostream"
 #include <fmt/printf.h>
 
-enum class Tag{helmet,torso,legs,gloves,weapon};
+// every Tag must be mapped to string in Constructor
+enum class Tag{helmet,torso,legs,gloves,weapon,healing,throwable,buffDamage};
 
 class Item {
 protected:

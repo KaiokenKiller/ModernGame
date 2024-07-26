@@ -23,28 +23,28 @@ std::vector<std::shared_ptr<Enemy>>& BanditArea::generateEnemies() {
 
 		switch (rngEnemyType) {
 			case 0: {
-				std::vector<unsigned> loot{0,0,0,0,2,3,4,5,6,12,12};
+				std::vector<unsigned> loot{0,0,0,0,2,3,4,5,6,12,21,21};
 
 				auto bandit = std::make_shared<Enemy>("Bandit", 20, 3, 5, loot);
 				generatedEnemies->emplace_back(bandit);
 				break;
 			}
 			case 1: {
-				std::vector<unsigned> loot{0,0,0,3,4,5,6,12,13};
+				std::vector<unsigned> loot{0,0,0,3,4,5,6,12,13,21};
 
 				auto banditArcher = std::make_shared<Enemy>("Banditen Bogenschütze", 20, 0, 10, loot);
 				generatedEnemies->emplace_back(banditArcher);
 				break;
 			}
 			case 2: {
-				std::vector<unsigned> loot{0,0,2,2,3,4,5,6,12};
+				std::vector<unsigned> loot{0,0,2,2,3,4,5,6,12,20,20,21};
 
 				auto banditSwordsman = std::make_shared<Enemy>("Banditen Schwertkämpfer", 20, 3, 7, loot);
 				generatedEnemies->emplace_back(banditSwordsman);
 				break;
 			}
 			default: {
-				std::vector<unsigned> loot{0,0,0,0,2,3,4,5,6,12,12};
+				std::vector<unsigned> loot{0,0,0,0,2,3,4,5,6,12,21,21};
 
 				auto bandit = std::make_shared<Enemy>("Bandit", 20, 3, 5, loot);
 				generatedEnemies->emplace_back(bandit);

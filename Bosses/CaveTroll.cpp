@@ -9,6 +9,6 @@
 std::shared_ptr<Enemy> CaveTroll::generateEnemies() {
 	std::vector<unsigned> loot{14};
 
-	auto caveTroll = std::make_shared<Enemy>("Höhlentroll",60,5,15,loot);
+	auto caveTroll = std::make_shared<Enemy>("Höhlentroll",70,5,15,loot);
 	return caveTroll;
 }

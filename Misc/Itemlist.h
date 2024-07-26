@@ -6,6 +6,7 @@
 #define MODERNGAME_ITEMLIST_H
 #include "../Items/Armor.h"
 #include "../Items/Weapon.h"
+#include "../Items/Consumeable.h"
 
 class Itemlist {
 protected:
